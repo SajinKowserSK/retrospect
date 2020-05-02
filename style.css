@@ -1,0 +1,80 @@
+
+.navbar-style{
+    box-shadow: 0 5px 10px #efefef;
+}
+
+#loginButton{
+    margin:15px;
+}
+
+#registerbutton{
+    margin:15px;
+}
+
+
+.logo{
+    height:100px;
+    padding: 8px 40px;
+    margin: 5px;
+    margin-left: -290px;
+}
+
+.big-text{
+    margin: 40px;
+}
+
+.btn-main{
+    background-color: darkgreen;
+    /*margin: 30px 10px;*/
+    margin: -50px;
+
+    width: 500px;
+    padding: 10px;
+    border-radius: 200px;
+    color: white;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+.table{
+    margin: 50px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+#block_container{
+    text-align: center;
+}
+
+#block_container > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.navbarText{
+    position: absolute;
+    left:5%;
+    top: 35%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.navbar-left{
+    position: absolute;
+    right:15%;
+    top: 35%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.navbar-left2{
+    position: absolute;
+    right: 8%;
+    top: 35%;
+    font-size: 20px;
+    font-weight: bold;
+}
