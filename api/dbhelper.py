@@ -41,6 +41,3 @@ class MentorCollectionHelper:
             mentors.append(mentor)
 
         return mentors
-
-m = MentorCollectionHelper()
-print(m.findMentorsWithKeywords(['Data Science']))
