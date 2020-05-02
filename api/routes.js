@@ -1,4 +1,4 @@
 module.exports = function(app) {
-    var mentors = require("./controllers/mentorController");
-    app.route('/mentors').get(mentors.getAllMentors);
+    var mentorsCollection = require("./mentorCollectionHelper");
+    app.route('/mentors').get(mentorsCollection.getAllMentors);
 }
