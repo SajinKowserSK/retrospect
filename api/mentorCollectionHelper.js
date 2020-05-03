@@ -5,8 +5,8 @@ const collection_name = "mentors";
 const querystring = require('querystring');
 
 function getMentorsWithKeywords(database, req, res) {
-  keywords = req.query['keywords'].split(',');
-  database.collection(collection_name).find({ "keywords": { "$in": keywords } }).toArray(function (err, result) {
+  keywords = req.query['keywords'].split(',').map(keyword_string => keyword_string.trim());
+  database.collection(collection_name).find({ "keywords": { "$all": keywords } }).toArray(function (err, result) {
     if (err) throw err;
     res.send(JSON.stringify(result));
   });
@@ -30,7 +30,6 @@ exports.getMentors = function (req, res) {
 
     else {
       getAllMentors(dbo, req, res);
-      
     }
     db.close();
 
