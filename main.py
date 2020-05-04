@@ -12,7 +12,7 @@ def home():
                                mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json())
 
 
-# @app.route("/login")
-# def login():
-#     return redirect(url_for('login.html'))
+@app.route("/login")
+def login():
+    return render_template("login.html")
 

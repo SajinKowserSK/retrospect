@@ -59,6 +59,15 @@
     top: 35%;
     font-size: 20px;
     font-weight: bold;
+    color: black;
+}
+
+a{
+    color: black;
+}
+
+.navbarText a{
+    color:black
 }
 
 
@@ -68,6 +77,11 @@
     top: 35%;
     font-size: 20px;
     font-weight: bold;
+    color: black;
+}
+
+.navbar-left a:link {
+    color: black
 }
 
 
@@ -77,6 +91,10 @@
     top: 35%;
     font-size: 20px;
     font-weight: bold;
+}
+
+.navbar-left2 a{
+    color: black;
 }
 
 html,body {
