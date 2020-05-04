@@ -18,7 +18,7 @@ exports.validate_mentor = function(req, res) {
     dbo.collection(collection_name).find({"email":req.body.email}).toArray(function (err, result) {
       if (err) throw err;
       if (result.length > 0) {
-        password.check_password(req.body.password, result, res);
+        password.check_password(req.body.password, result[0], res);
       }
       else {
         res.status(404).send({"error":"user does not exist"});
@@ -26,8 +26,8 @@ exports.validate_mentor = function(req, res) {
     });
     db.close();
   });
-
 }
+
 exports.getMentors = function (req, res) {
   MongoClient.connect(db_url, function (err, db) {
     if (err) throw err;
