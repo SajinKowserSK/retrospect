@@ -12,7 +12,22 @@ def home():
                                mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json())
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET','POST'])
 def login():
-    return render_template("login.html")
 
+    if request.method == "GET":
+        return render_template("login.html")
+
+    else:
+        userEntry = {}
+        userEntry["email"] = request.form['userID']
+        userEntry["password"] = request.form['passwordID']
+        response = requests.post(api_base_url + "mentors" + userEntry)
+
+        if response.status_code == 200:
+            return render_template("mentors.html")
+
+        elif response.status_code ==  404:
+            return render_template("login.html", msgResponse = "User not found")
+        else:
+            return render_template("login.html", msgResponse = "Email found but incorrect password")

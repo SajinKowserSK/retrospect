@@ -70,6 +70,10 @@ a{
     color:black
 }
 
+.returnResponse a{
+    color: red;
+}
+
 
 .navbar-left{
     position: absolute;
