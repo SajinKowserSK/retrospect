@@ -4,6 +4,7 @@ const db_name = "billiondollar";
 const collection_name = "mentors";
 const querystring = require('querystring');
 const password = require('./password_hashing');
+
 function searchMentorsCollectionAndSendResponse(database, response, query_dict) {
   database.collection(collection_name).find(query_dict).toArray(function (err, result) {
     if (err) throw err;

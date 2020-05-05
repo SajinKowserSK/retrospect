@@ -9,7 +9,7 @@ exports.check_password = function(entered_password, user, response) {
             response.status(200).send(JSON.stringify(user));
         }
         else {
-            response.status(404).send(JSON.stringify({"error":"invalid password"}));
+            response.status(204).send(JSON.stringify({"error":"invalid password"}));
         }
     }) 
 
