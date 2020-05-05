@@ -27,10 +27,12 @@ def login():
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
         response = requests.post(api_base_url + "mentors", json=userEntry)
+        responseDict = response.json()
+        tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
 
         if response.status_code == 200:
 
-            return render_template("mentors.html")
+            return render_template("profile.html", name=responseDict['name'], bio=responseDict['bio'], pic=responseDict['image'], keywords=responseDict['keywords'], tags = tagColors)
 
         elif response.status_code ==  404:
 
