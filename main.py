@@ -1,3 +1,5 @@
+import sys
+
 from flask import Flask, render_template, request
 import requests
 app = Flask(__name__)
@@ -16,18 +18,23 @@ def home():
 def login():
 
     if request.method == "GET":
+        print("hello sajin")
         return render_template("login.html")
 
     else:
+
         userEntry = {}
-        userEntry["email"] = request.form['userID']
+        userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
-        response = requests.post(api_base_url + "mentors" + userEntry)
+        response = requests.post(api_base_url + "mentors", json=userEntry)
 
         if response.status_code == 200:
+
             return render_template("mentors.html")
 
         elif response.status_code ==  404:
-            return render_template("login.html", msgResponse = "User not found")
+
+            return render_template("login.html", msgResponse = "User not found".upper())
         else:
-            return render_template("login.html", msgResponse = "Email found but incorrect password")
+
+            return render_template("login.html", msgResponse = "Email found but incorrect password".upper())
