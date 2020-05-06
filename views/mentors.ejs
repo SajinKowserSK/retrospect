@@ -1,0 +1,40 @@
+<%- include('header') %>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<style>
+    .bcontent {
+        margin-top: 10px;
+    }
+</style>
+<br>
+<h2>Mentors Matching Your Search For: <%=  keywords %> </h2>
+    <% mentors.forEach(function(mentor) { %>
+
+
+</head>
+<body>
+    <div class="container bcontent">
+
+        <hr>
+        <div class="card" style="width: 500px;">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src= <%= mentor.image %> >
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= mentor.name %></h5>
+                        <p class="card-text"><%= mentor.bio %></p>
+                        <a href="#" class="btn btn-primary">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+ <% }); %>
+
+<%- include('footer') %>
