@@ -1,6 +1,7 @@
 const path = require('path');
-const requests = require('request');
-const api_base_url = "http://localhost:3000/"
+const https = require('https');
+
+const api_base_url = "http://localhost:3000/";
 module.exports = function(app) {
     
     app.get('/', function(request, response) {
@@ -12,10 +13,15 @@ module.exports = function(app) {
         // handle what happens when we get a post request from the home page.
         console.log("got post request");
         var keywords = request.body.keywords;
-        request.get(api_base_url + "mentors/?keywords=" + keywords, {"json":true}, function(err, res, body) {
-            if (err) throw err;
-            console.log(body.explanation);
-        })
-        
+        console.log(api_base_url + "mentors/?keywords=" + keywords);
+        https.get(api_base_url + "mentors/?keywords=" + keywords, (res) => {
+        console.log('statusCode:', res.statusCode);
+        console.log('headers:', res.headers);
+
+        res.on('data', (d) => {
+            process.stdout.write(d);
+  });
+
+})
     })
 }
