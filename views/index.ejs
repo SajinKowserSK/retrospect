@@ -1,9 +1,9 @@
-<%-include('layout') %>
+<%-include('header') %>
 
 <div class="row">
     <div class="col">
 
-      <form action="/" method="post" enctype="multipart/form-data">
+      <form method="post">
 
         <div class="form-group">
             <br>
@@ -13,12 +13,6 @@
         <input class="form-control" type="text" name='keywords' placeholder="ex: technology, finance, social-good, etc." aria-label="Search">
 
         </div>
-<!--              <div class = "text-center">-->
-<!--         <form method="post">-->
-<!--        <br>-->
-<!--        <button type="submit" class = "btn-main">Generate</button>-->
-<!--    </form>-->
-<!--    </div>-->
 
           <div class = "text-center">
               <br>
@@ -29,6 +23,4 @@
 
     </div>
   </div>
-</div>
-</body>
-</html>
+<%- include('footer') %>
