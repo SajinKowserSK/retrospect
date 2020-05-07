@@ -11,7 +11,6 @@ exports.get_login_page = function(request, response) {
     response.render("login.ejs");
 }
 
-
 exports.post_home_page = function(request, response){ 
     var keywords = request.body.keywords;
     console.log(api_base_url + "mentors/?keywords=" + keywords);
