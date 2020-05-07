@@ -28,7 +28,7 @@ def login():
         userEntry["password"] = request.form['passwordID']
         response = requests.post(api_base_url + "mentors", json=userEntry)
         responseDict = response.json()
-        tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
+
 
         if response.status_code == 200:
 
