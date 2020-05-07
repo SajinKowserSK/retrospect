@@ -24,17 +24,15 @@ exports.post_home_page = function(request, response){
 
 
 exports.post_login_page = function(request, response){
-
     var dict = [];
-
         dict.push({
             key: 'email',
-            value: req.form['emailID']
+            value: request.form['emailID']
         })
 
         dict.push({
             key: 'password',
-            value: req.form['passwordID']
+            value: request.form['passwordID']
         })
 
         var APIresponse;
@@ -47,16 +45,12 @@ exports.post_login_page = function(request, response){
         var postResponse = APIresponse.json()
         var tagColors = tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
 
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200)
                 response.render('profile.ejs', {"name": postResponse['name'], 'bio':postResponse['bio'], 'pic':postResponse['image'], 'keywords':postResponse['keywords'], 'tags': tagColors});
-            }
 
-            else if (response.statusCode == 404){
+            else if (response.statusCode == 404)
                 response.render("login.ejs", {"msgResponse":"USER NOT FOUND"});
-            }
 
-            else{
+            else
                 response.render('login.ejs', {'msgResponse': "EMAIL FOUND BUT INCORRECT PASSWORD"});
-            }
-
 }
