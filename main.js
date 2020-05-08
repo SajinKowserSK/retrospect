@@ -4,7 +4,7 @@ const app = express();
 var port = 5000;
 
 app.set('views','./views'); // set html folder to views.
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); 
 
 app.use(express.static(__dirname + '/static')); // set static folder to ./static.
 
