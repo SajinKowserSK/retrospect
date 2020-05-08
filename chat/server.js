@@ -4,7 +4,7 @@ const app = express();
 
 const server = http.Server(app);
 const io = require('socket.io')(server);
-
+var clients = {};
 app.set('views','./views'); // set html folder to views.
 app.set('view engine', 'ejs'); 
 app.use(express.static(__dirname + '/static')); // set static folder to ./static.
@@ -16,11 +16,15 @@ app.get('/', (req, res)=>{
 })
 
 io.on('connection', (socket)=> {
-    socket.emit("message","Hi there");
-    socket.emit("message","welcome to chat!");
-
     socket.on('client-message', (message)=>{
-        socket.broadcast.emit('message',message);
+        socket.broadcast.emit('message',clients[socket.id] + ": " + message);
+
+    
+    })
+
+    socket.on('new-client', (name)=>{
+        clients[socket.id] = name;
+        socket.broadcast.emit('message',  name + " has joined the chat");
     })
 
 })

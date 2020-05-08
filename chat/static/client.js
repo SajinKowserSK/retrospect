@@ -2,7 +2,9 @@ const socket = io.connect('http://localhost:5000');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 const messageContainer = document.getElementById('message-container');
-
+var name = prompt("Enter name");
+appendMessage("Welcome you have joined the chat!");
+socket.emit('new-client', name);
 function appendMessage(message) {
     const messageElement = document.createElement('div');
     messageElement.innerText = message;
