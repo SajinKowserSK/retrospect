@@ -1,4 +1,4 @@
-{% if status %}
+{% if current_user.is_authenticated %}
     {% extends "loggedin_layout.html" %}
 
 {% else %}
@@ -45,5 +45,3 @@
  {% endfor %}
 
 {% endblock %}
-
-{% endif %}

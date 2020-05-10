@@ -1,8 +1,4 @@
-{% if status %}
-    {% extends "loggedin_layout.html" %}
-
-{% else %}
-    {% extends "layout.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
 
@@ -14,15 +10,13 @@
 <div class="container">
     <div class="span3 well">
         <div style="text-align: center;">
-        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src={{pic}} name="aboutme" width="140" height="140" class="img-circle"></a>
-        <h3>{{name}}</h3>
+        <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src={{current_user.image}} name="aboutme" width="140" height="140" class="img-circle"></a>
+        <h3>{{current_user.name}}</h3>
             {% for keyword in keywords %}
-                <span class="badge badge-pill badge-primary">{{keyword}}</span>
+                <span class="badge badge-pill badge-primary">{{current_user.keyword}}</span>
             {% endfor %}
-
-
                     <p class="text-left"><strong>Bio: </strong><br>
-                     {{bio}}</p>
+                     {{current_user.bio}}</p>
                     <br>
 
 
@@ -41,5 +35,3 @@
 
 
 {% endblock %}
-
-{% endif %}
