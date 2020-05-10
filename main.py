@@ -1,5 +1,4 @@
 import sys
-
 from flask import Flask, render_template, request, session, redirect, url_for
 import requests
 app = Flask(__name__)
@@ -24,7 +23,6 @@ def login():
 
 
     else:
-
         userEntry = {}
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
@@ -35,15 +33,14 @@ def login():
 
         if response.status_code == 200:
             session['logged_in'] = True
-
             return redirect(url_for('.profile', status=session['logged_in'], name=responseDict['name'], bio=responseDict['bio'], pic=responseDict['image'], keywords=responseDict['keywords'], tags = tagColors))
 
         elif response.status_code ==  404:
-
             return render_template("login.html", status=session['logged_in'], msgResponse = "User not found".upper())
-        else:
 
+        else:
             return render_template("login.html", status=session['logged_in'], msgResponse = "Email found but incorrect password".upper())
+
 
 @app.route("/logout")
 def logout():

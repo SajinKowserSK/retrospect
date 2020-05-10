@@ -13,12 +13,12 @@ exports.get_login_page = function(request, response) {
 
 exports.post_home_page = function(request, response){ 
     var keywords = request.body.keywords;
+
     https.get(api_base_url + "/mentors/?keywords=" + keywords, (res) => {
         res.on('data', (data) => {
         response.render("mentors.ejs",{"mentors": JSON.parse(data), "keywords": keywords});
         })
     });
-
 }
 
 exports.post_login_page = function(request, response){
