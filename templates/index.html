@@ -1,4 +1,8 @@
-{% extends "layout.html" %}
+{% if current_user.is_authenticated %}
+    {% extends "loggedin_layout.html" %}
+
+{% else %}
+    {% extends "layout.html" %}
 
 {% block content %}
           <div class="row">
@@ -10,16 +14,10 @@
             <br>
           <label>Search For Mentors Using Keywords Below:</label>
 
-          <!-- Search form -->
         <input class="form-control" type="text" name='keywords' placeholder="ex: technology, finance, social-good, etc." aria-label="Search">
 
         </div>
-<!--              <div class = "text-center">-->
-<!--         <form method="post">-->
-<!--        <br>-->
-<!--        <button type="submit" class = "btn-main">Generate</button>-->
-<!--    </form>-->
-<!--    </div>-->
+
 
           <div class = "text-center">
               <br>
@@ -32,4 +30,6 @@
   </div>
 
 {% endblock %}
+
+{% endif %}
 

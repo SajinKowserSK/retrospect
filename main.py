@@ -1,8 +1,6 @@
-import sys
-import flask_login
-from flask import Flask, render_template, request, session, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for
 import requests
-from flask_login import LoginManager, login_user, UserMixin, login_required, logout_user, current_user
+from flask_login import LoginManager, login_user, login_required, logout_user
 from models import User
 
 app = Flask(__name__)
