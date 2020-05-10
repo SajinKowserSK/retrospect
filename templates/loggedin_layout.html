@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<!--<div class="page-header">-->
+<!--  <h1>Example Page Header</h1>-->
+<!--</div>-->
+
+<body>
+<header class = "header">
+    <nav class = "navbar navbar-style">
+        <div class = "container">
+            <div class="navbar-header">
+                <br>
+                <br>
+
+                <div id="block_container">
+                     <div class="navbar-left"> <a href="login"> Login </a></div>
+                    <div class="navbar-left2"> <a> Register </a></div>
+                    <div class="navbarText"> <a href="/">IT WORKS</a> </div>
+                </div>
+
+                <br>
+
+            </div>
+
+
+        </div>
+    </nav>
+</header>
+
+
+
+
+    <div class = "container">
+
+            {% block content %}
+
+            {% endblock %}
+
+
+
+    </div>
+
+
+</body>

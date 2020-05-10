@@ -1,25 +1,27 @@
 import sys
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import requests
 app = Flask(__name__)
+app.secret_key = "shafibullah"
 api_base_url = "http://localhost:3000/"
 
 @app.route('/',methods=['GET','POST'])
 def home():
     if request.method == "GET":
-        return render_template("index.html")
+        return render_template("index.html", status=session['logged_in'])
     else:
-        return render_template("mentors.html",
+        return render_template("mentors.html", status=session['logged_in'],
                                mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json())
 
 
 @app.route("/login", methods=['GET','POST'])
 def login():
 
+
     if request.method == "GET":
-        print("hello sajin")
         return render_template("login.html")
+
 
     else:
 
@@ -29,14 +31,16 @@ def login():
         response = requests.post(api_base_url + "mentors", json=userEntry)
         responseDict = response.json()
 
+        tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
 
         if response.status_code == 200:
+            session['logged_in'] = True
 
-            return render_template("profile.html", name=responseDict['name'], bio=responseDict['bio'], pic=responseDict['image'], keywords=responseDict['keywords'], tags = tagColors)
+            return render_template("profile.html", status=session['logged_in'], name=responseDict['name'], bio=responseDict['bio'], pic=responseDict['image'], keywords=responseDict['keywords'], tags = tagColors)
 
         elif response.status_code ==  404:
 
-            return render_template("login.html", msgResponse = "User not found".upper())
+            return render_template("login.html", status=session['logged_in'], msgResponse = "User not found".upper())
         else:
 
-            return render_template("login.html", msgResponse = "Email found but incorrect password".upper())
+            return render_template("login.html", status=session['logged_in'], msgResponse = "Email found but incorrect password".upper())
