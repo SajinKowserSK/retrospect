@@ -12,6 +12,7 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(email):
+
     return requests.get(api_base_url + "mentors/?email="+email).json()[0]
 
 @app.route('/',methods=['GET','POST'])
@@ -21,7 +22,6 @@ def home():
     else:
         return render_template("mentors.html",
                                mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json())
-
 
 @app.route("/login", methods=['GET','POST'])
 def login():
@@ -35,6 +35,7 @@ def login():
         response = requests.post(api_base_url + "mentors", json=userEntry)
         tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
 
+
         if response.status_code == 200:
             user = User(response.json())
             user.authenticated = True
@@ -42,12 +43,11 @@ def login():
             print("logged in user")
             return redirect(url_for('profile'))
 
-        elif response.status_code ==  404:
-
-            return render_template("login.html", msgResponse = "User not found".upper())
+        elif response.status_code == 404:
+            return render_template("login.html", msgResponse="User not found".upper())
         else:
 
-            return render_template("login.html", msgResponse = "Email found but incorrect password".upper())
+            return render_template("login.html", msgResponse="Email found but incorrect password".upper())
 
 
 @app.route("/logout")
