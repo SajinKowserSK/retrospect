@@ -10,8 +10,10 @@ api_base_url = "https://barebilliondollar.herokuapp.com/"
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 @login_manager.user_loader
 def load_user(email):
+    print(email)
     return requests.get(api_base_url + "mentors/?email="+email).json()[0]
 
 @app.route('/',methods=['GET','POST'])
