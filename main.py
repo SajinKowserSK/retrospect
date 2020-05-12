@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
-from flask_login import LoginManager, login_user, login_required, logout_user
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User
 
 app = Flask(__name__)
@@ -12,10 +12,13 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(email):
-    return requests.get(api_base_url + "mentors/?email="+email).json()[0]
+    return User(requests.get(api_base_url + "mentors/?email="+email).json()[0])
 
 @app.route('/',methods=['GET','POST'])
 def home():
+    if current_user.is_authenticated:
+        print("user is already logged in")
+
     if request.method == "GET":
         return render_template("index.html")
     else:
@@ -53,6 +56,7 @@ def login():
 @login_required
 def logout():
     logout_user()
+    print('logged out user')
     return redirect("/")
 
 @app.route("/profile")
