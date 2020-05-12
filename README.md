@@ -3,8 +3,14 @@
 # To Do: 
 
 # Shafin
-- Start designing web landing page (use undraw "online connect" pic) - Done (for now.will add finishing touches later.)
-- fix log out feature 
+
+Done:
+    - Start designing web landing page (use undraw "online connect" pic) - Done (for now.will add finishing touches later.)
+    - fix log out feature  
+
+To Do:
+    - handle redirection after login.
+    - card design.
 
 # Sajin
 - get started on the registration form
