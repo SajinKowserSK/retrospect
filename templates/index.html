@@ -1,35 +1,133 @@
-{% if current_user.is_authenticated %}
-    {% extends "loggedin_layout.html" %}
+<!DOCTYPE html>
+<head>
+    <title>
+        Welcome To Billion Dollar.
+    </title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-{% else %}
-    {% extends "layout.html" %}
-
-{% block content %}
-          <div class="row">
-    <div class="col">
-
-      <form action="/" method="post" enctype="multipart/form-data">
-
-        <div class="form-group">
-            <br>
-          <label>Search For Mentors Using Keywords Below:</label>
-
-        <input class="form-control" type="text" name='keywords' placeholder="ex: technology, finance, social-good, etc." aria-label="Search">
-
-        </div>
+    <style>
 
 
-          <div class = "text-center">
-              <br>
-                   <button type="submit" id="find" class="btn-main">FIND A MENTOR!</button>
-          </div>
+        @font-face {
+            font-family: "Poppins-Light";
+            /* src: url('fonts/Poppins-Light.ttf'); */
+            src: url("{{url_for('static',filename='fonts/Poppins-Light.ttf') }}");
 
-      </form>
+        }
 
-    </div>
-  </div>
+        @font-face {
+            font-family: "Poppins-Bold";
+            src: url("{{url_for('static',filename='fonts/Poppins-Bold.ttf') }}");
 
-{% endblock %}
+        }
 
-{% endif %}
+        @font-face {
+            font-family: "TitilliumWeb-Light";
+            src: url('fonts/TitilliumWeb-Light.ttf');
+            src: url("{{url_for('static',filename='fonts/TitilliumWeb-Light.ttf') }}");
 
+        }
+
+        .TitilliumWeb {
+            font-family: 'TitilliumWeb-Light',
+        }
+  
+        .poppins-light {
+            font-family: 'Poppins-Light';
+            font-weight: bold;
+        }
+
+        .poppins-bold {
+            font-family: 'Poppins-Bold';
+        }
+        .first-row {
+            padding-top: 3%;
+        }
+
+        .sz-27 {
+            font-size: 17px;
+        }
+
+        .gray-font {
+            color: #8f9aac;
+        }
+
+        .btn-green {
+            background-color: #01b681;
+        }
+
+        .white-text {
+            color: white;
+        }
+
+        .second-row {
+            padding-top: 5%;
+        }
+      
+        
+        .list-inline-item  {
+            padding-right: 3%;
+        }
+        .green-text {
+            color: #01b681;
+        }
+
+        .lighter-gray {
+            color: #576a87;
+        }
+
+        .sz-60 {
+            font-size: 40px;
+        }
+
+        .keywords-position {
+            padding-top: 5%;
+        }
+
+        .description-font-color {
+            color: #343434;
+        }
+ 
+    </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class='row first-row'>
+
+                <div class="col-7">
+                    <img src="{{url_for('static',filename='images/icon2.png')}}">
+
+                    <!-- <img src='icon2.png'> -->
+                </div>
+                <div class="col-5">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#" class="poppins-light sz-27 gray-font">Sign In</a></li>
+                        <li class="list-inline-item"><a href="#" class="poppins-light sz-27 gray-font">Sign Up</a></li>
+                        <li class="list-inline-item"><a href="#" class="poppins-light sz-27 green-text">Learn More</a>
+                        </li>
+                      </ul>
+                </div>        
+            </div>
+
+            <div class="row second-row">
+                <div class="col-4"><p class="poppins-bold lighter-gray sz-60 keywords-position">Connecting With Mentors Is Easier Than You Think.</p>
+                    <p class="description-font-color TitilliumWeb">BDD allows students to connect and receive mentorship from upper year students in their field. 
+                        Students can directly message mentors if the mentor has marked themselves available for providing mentorship.</p>
+
+                        <form method="post">
+                              <input type="text" class="form-control" name="keywords" placeholder="Enter Keywords (Eg; Engineering, UofT)">
+                            <button type="submit" class="btn btn-green white-text">Find Mentors</button>
+                          </form>
+                    </div>
+                
+                <div class="col-8">
+                    <img src="{{url_for('static',filename='images/illustration.jpg')}}">
+
+                    <!-- <img src="illustration.jpg"> -->
+                </div>
+            </div>
+           </div>
+    </body>
+</html>
