@@ -16,6 +16,7 @@
 - updating components in profiles.
 - wireframes of each individual pages. (overall UI)
 - chat.
+<<<<<<< HEAD
 
 # TIMELINE
 
