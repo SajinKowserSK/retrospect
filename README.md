@@ -11,19 +11,28 @@ Done:
 
 
 To Do:
-- profile page needs to be done properly.
-- updating features for the user.
-- handle redirection after login.
+  - updating features for the user.
+  - handle redirection after login.
 
 # Sajin
-- get started on the registration form
-- create design colors 
-- mock up for mentors page.
+
+Done:
+
+  - Mentor login
+  - Home Page Mockup
+  - Mentors Page Mock Up
+  
+To Do:
+- get started on the registration form 
+  - Server side rendering and handling.
+  - UI Mockups.
+  
+- Profile Page Mockup. 
+
 
 # backlog;
 
 - student login and registration,
-- updating components in profiles.
 - wireframes of each individual pages. (overall UI)
 - chat.
 
