@@ -14,16 +14,18 @@ login_manager.init_app(app)
 def load_user(email):
     return User(requests.get(api_base_url + "mentors/?email="+email).json()[0])
 
-@app.route('/',methods=['GET','POST'])
+@app.route('/',methods=['GET'])
 def home():
     if current_user.is_authenticated:
         print("user is already logged in")
 
-    if request.method == "GET":
-        return render_template("index.html")
-    else:
-        return render_template("mentors.html",
-                               mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json())
+    return render_template("index.html")
+  
+
+@app.route('/mentors',methods=['POST'])
+def mentors():
+    return render_template("mentors.html",
+                               mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json(), keywords=request.form['keywords'])
 
 @app.route("/login", methods=['GET','POST'])
 def login():

@@ -1,22 +1,23 @@
 @font-face {
     font-family: "Poppins-Light";
-    /* src: url('fonts/Poppins-Light.ttf'); */
-    src: url("../static/fonts/Poppins-Light.ttf");
-
+    src : url("../static/fonts/Poppins-Light.ttf")
+    src : url("{{url_for('static',filename='fonts/Poppins-Light.ttf')}}")
 }
 
 @font-face {
     font-family: "Poppins-Bold";
-    src: url("../static/fonts/Poppins-Bold.ttf");
+    src : url("../static/fonts/Poppins-Bold.ttf")
 
 }
 
 @font-face {
     font-family: "TitilliumWeb-Light";
-    src: url('fonts/TitilliumWeb-Light.ttf');
-    src: url("fonts/TitilliumWeb-Light.ttf");
+    src : url("../static/fonts/TitilliumWeb-Light.ttf")
+
 
 }
+
+
 
 .TitilliumWeb {
     font-family: 'TitilliumWeb-Light',
@@ -77,3 +78,4 @@
 .description-font-color {
     color: #343434;
 }
+
