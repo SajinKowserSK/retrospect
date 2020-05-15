@@ -117,12 +117,12 @@
                             <img src="{{mentor['image']}}" class="image" > 
                         </div>
                         <div class="col-7">
-                            <h4 class="name-font green-text">{{mentor['name']}}</h4>
+                            <h4 class="name-font gray-font">{{mentor['name']}}</h4>
                             <p class="grey-font header-font reduced-top-padding">{{mentor['header']}}</p>
                             <p class="dm-sans-font sz-12 reduced-top-padding">{{mentor['bio']}}</p>
 
                             {% for keyword in mentor['keywords']%}
-                            <span class="badge badge-success badge-pill sz-10">{{keyword}}</span>
+                            <span class="badge badge-success badge-pill sz-10 tag-font">{{keyword}}</span>
 
                             {% endfor %}
                         </div>

@@ -13,9 +13,7 @@
 
 @font-face {
     font-family: "TitilliumWeb-Light";
-    src: url('fonts/TitilliumWeb-Light.ttf');
-    src: url("fonts/TitilliumWeb-Light.ttf");
-
+    src: url('../static/fonts/TitilliumWeb-Light.ttf');
 }
 
 .TitilliumWeb {
