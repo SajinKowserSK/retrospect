@@ -27,7 +27,8 @@
 
     .card-container {
         padding-left: 0%;
-        padding-top: 5%;
+        padding-top: 10%;
+
     }
 
     .mentor-card {
@@ -37,7 +38,7 @@
         width: 100%;
         max-width: 100%;
         padding-top: 0%;
-        overflow: scroll;
+        overflow: hidden;
     }
 
     .grey-font {
@@ -50,8 +51,20 @@
     }
 
     .name-font {
+
         font-size: 18px;
     }
+
+    @Override
+    .tag-font{
+
+            @font-face {
+                font-family: 'Montserrat-Light';
+                src: "{{url_for('static', filename='fonts/Montserrat-Light.ttf')}}"
+
+            }
+        }
+
 
     .header-font {
         font-size: 15px;
@@ -67,6 +80,11 @@
     
     .sz-12 {
         font-size: 12px;
+    }
+
+    .name-font{
+        font-weight: 700;
+        font-size: 25px;
     }
 
 
@@ -117,12 +135,12 @@
                             <img src="{{mentor['image']}}" class="image" > 
                         </div>
                         <div class="col-7">
-                            <h4 class="name-font green-text">{{mentor['name']}}</h4>
+                            <h4 class="name-font lighter-gray">{{mentor['name']}}</h4>
                             <p class="grey-font header-font reduced-top-padding">{{mentor['header']}}</p>
                             <p class="dm-sans-font sz-12 reduced-top-padding">{{mentor['bio']}}</p>
 
                             {% for keyword in mentor['keywords']%}
-                            <span class="badge badge-success badge-pill sz-10">{{keyword}}</span>
+                            <span class="badge badge-success badge-pill sz-10 tag-font">{{keyword}}</span>
 
                             {% endfor %}
                         </div>

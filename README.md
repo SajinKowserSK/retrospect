@@ -2,6 +2,9 @@
 
 # To Do: 
 
+- mentors page, add padding to the RIGHT of the card (see Riyasat's one bleeds on the edge)
+- change tags font to something light like Monteserrat-Extralight
+- reduce padding betweeen header and mentor title
 # Shafin
 
 Done:
