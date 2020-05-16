@@ -26,7 +26,7 @@ Done:
   - Mentors Page Mock Up
   
 To Do:
-- get started on the registration form 
+  - get started on the registration form 
   - Server side rendering and handling.
   - UI Mockups.
   
