@@ -24,9 +24,11 @@ Done:
   - Mentor login
   - Home Page Mockup
   - Mentors Page Mock Up
+  - created registration form
   
 To Do:
-  - get started on the registration form 
+  - make the dots responsive? 
+  - connect sign up to backend and add db helper methods
   - Server side rendering and handling.
   - UI Mockups.
   
