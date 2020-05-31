@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <title>
+        Welcome To Billion Dollar.
+    </title>
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='styles.css')}}">
+    </head>
+    <style>
+
+        .container {
+            padding-top: 3%;
+        }
+        .container-fluid {
+        padding-top: 2%;
+        padding-left: 5%;
+
+  
+    }
+    .name-font {
+        font-size: 18px;
+    }
+
+    .top-row {
+            padding-top: 2%;
+        }
+
+    .profile-image {
+        width: 100%;
+        height: 240px;
+    }
+    .bio {
+        padding-top: 7%;
+    }
+
+    .sz-45 {
+        font-size: 20px;
+    }
+
+    .sz-8 {
+        font-size: 14px;
+    }
+
+    .sz-40 {
+        font-size: 40px;
+    }
+
+    .header-col {
+        padding-left: 4%;
+    }
+
+    </style>
+
+    <body>
+        <div class="container">
+            <div class='row'>
+
+                <div class="col-10">
+                    <img src="{{url_for('static',filename='images/icon2.png')}}">
+                </div>
+                <div class="col-2">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="{{url_for('login')}}" class="poppins-light sz-27 gray-font">Messages</a></li>
+                        <li class="list-inline-item"><a href="#" class="poppins-light sz-27 gray-font">Logout</a></li>
+                        </li>
+                      </ul>
+                </div>        
+            </div>
+
+            <div class="row top-row">
+                <div class='col-2'>
+                    <img src="https://i.ibb.co/n8Cv28b/Screen-Shot-2020-05-14-at-6-14-27-AM.png" class="profile-image">
+
+                </div>
+                <!-- <div class="col-1">
+                </div> -->
+                <div class="col-4 header-col">
+                    <h4 class="gray-font sz-40">Sajin Kowser</h4>
+                    <p class="gray-font">Western University</p>
+                </div>
+
+
+                </div>
+            </div>
+
+           </div>
+    </body>
+</html>

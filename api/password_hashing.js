@@ -1,4 +1,5 @@
 bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // check password entered by user, compare with password in database. If it matches, 
 // respond with the users info, else respond with an error message.
@@ -14,6 +15,13 @@ exports.check_password = function(entered_password, user, response) {
     }) 
 
 }
+
+exports.generate_hash = function(password_string)  {
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(password_string, salt);
+    return hash
+}
+
 
 
 
