@@ -86,6 +86,12 @@ def register():
         userEntry = {}
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
+        userEntry["name"] = ""
+        userEntry["keywords"] = []
+        userEntry["bio"] = ""
+        userEntry["image"] = "https://ibb.co/gF3MV75"
+        userEntry["header"] = ""
+
 
         response = requests.post(api_base_url + "newmentor", json=userEntry)
 
