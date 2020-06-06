@@ -3,6 +3,7 @@ import requests
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User
 import bcrypt
+from pymongo.errors import DuplicateKeyError
 
 app = Flask(__name__)
 app.secret_key = "shafibullah"
@@ -10,9 +11,6 @@ app.run(debug=True)
 api_base_url = "https://barebilliondollar.herokuapp.com/"
 
 # MONGO STUFF
-
-
-
 
 
 
@@ -38,19 +36,14 @@ def mentors():
 
 @app.route("/login", methods=['GET','POST'])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
 
-    else:
+    if request.method == 'POST':
         userEntry = {}
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
 
-        # make request to API
         response = requests.post(api_base_url + "mentors", json=userEntry)
         tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
-
-
         if response.status_code == 200:
             user = User(response.json())
             user.authenticated = True
@@ -64,6 +57,11 @@ def login():
 
             return render_template("login.html", msgResponse="Email found but incorrect password".upper())
 
+    return render_template("login.html")
+# @login_manager.user_loader
+# def load_user(username):
+#     return get_user(username)
+
 
 @app.route("/logout")
 @login_required
@@ -76,20 +74,28 @@ def logout():
 def profile():
     return render_template("profile.html")
 
-@app.route('/register',methods=['GET'])
+
+@app.route("/register", methods=['GET', 'POST'])
 def register():
-    # if request.method == 'POST':
-    #     users = mongo.db.users
-    #     existing_user = users.find_one({'name':request.form['username']})
-    #
-    #     if existing_user is None:
-    #         hashedPassword = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-    #         users.insert({'name' : request.form['username'], 'password': hashedPassword})
-    #         session['username'] = request.form['username']
-    #         return redirect(url_for('index'))
-    #
-    #     # can be passed as a variable to sign up html page
-    #     return 'username already exists'
-    #
-    # else:
-    return render_template("signup.html")
+    if current_user.is_authenticated:
+        redirect(url_for('home'))
+
+    message=''
+
+    if request.method == 'POST':
+        userEntry = {}
+        userEntry["email"] = request.form['emailID']
+        userEntry["password"] = request.form['passwordID']
+
+        response = requests.post(api_base_url + "newmentor", json=userEntry)
+
+
+        if response.status_code == 404:
+            message= 'username already exists'
+            return render_template("signup.html", msgResponse=message.upper())
+
+        else:
+            # saved user, redirecting to login page
+            return redirect(url_for('login'))
+
+    return render_template('signup.html')

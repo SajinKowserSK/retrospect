@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+    {% block content %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,7 +147,7 @@
         </svg>
 
 
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form method="post">
         <div class="text-center">
             <h2>Register Today!</h2>
             <p>Please fill in the following information</p>
@@ -161,7 +164,7 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
-                <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+                <input type="email" class="form-control" name="emailID" placeholder="Email Address" required="required">
             </div>
         </div>
 
@@ -189,7 +192,7 @@
                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
 
 
-                <input name="password" id="password" type="password" class="form-control" placeholder="Password"
+                <input name="passwordID" id="password" type="password" class="form-control" placeholder="Password"
                        required="required" onkeyup='check();'/>
 
             </div>
@@ -233,6 +236,10 @@
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                    <div class = "returnResponse">
+					<br>
+					<a> {{msgResponse}}</a>
+				</div>
                 </div>
 
             </div>
@@ -265,3 +272,4 @@
 <!--            </div>-->
 
 <!--        </form>-->
+{% endblock %}

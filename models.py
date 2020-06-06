@@ -8,6 +8,10 @@ class User(UserMixin):
         self.image = user_dict['image']
         self.authenticated = False
 
+    @staticmethod
+    def is_authenticated(self):
+        return True
+
     def is_active(self):
         return True
 
