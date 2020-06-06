@@ -65,6 +65,12 @@ def logout():
 def profile():
     return render_template("profile.html")
 
+<<<<<<< HEAD
 @app.route('/test')
 def test():
     return render_template('test.html')
+=======
+@app.route('/register',methods=['GET'])
+def register():
+    return render_template("signup.html")
+>>>>>>> 3e7325d9d0b8129e2afaa5b78ceba03ec363b3fa

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>Bootstrap Sign up Form with Icons</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <style type="text/css">
+	body {
+		color: #fff;
+		background: #f9f9f9;
+		font-family: 'Roboto', sans-serif;
+	}
+	.form-control, .form-control:focus, .input-group-addon {
+		border-color: #e1e1e1;
+	}
+    .form-control, .btn {
+        border-radius: 3px;
+    }
+	.signup-form {
+		width: 390px;
+		margin: 0 auto;
+		padding: 30px 0;
+
+
+	}
+    .signup-form form {
+		color: #999;
+		border-radius: 3px;
+    	margin-bottom: 15px;
+        background: #fff;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+	.signup-form h2 {
+		color: #333;
+		font-weight: bold;
+        margin-top: 0;
+    }
+    .signup-form hr {
+        margin: 0 -30px 20px;
+    }
+	.signup-form .form-group {
+		margin-bottom: 20px;
+	}
+	.signup-form label {
+		font-weight: normal;
+		font-size: 13px;
+	}
+	.signup-form .form-control {
+		min-height: 38px;
+		box-shadow: none !important;
+	}
+	.signup-form .input-group-addon {
+		max-width: 42px;
+		text-align: center;
+	}
+	.signup-form input[type="checkbox"] {
+		margin-top: 2px;
+	}
+    .signup-form .btn{
+        font-size: 16px;
+        font-weight: bold;
+		background: #19aa8d;
+		border: none;
+		min-width: 330px;
+
+    }
+	.signup-form .btn:hover, .signup-form .btn:focus {
+		background: #179b81;
+        outline: none;
+	}
+	.signup-form a {
+		color: #fff;
+		text-decoration: underline;
+	}
+	.signup-form a:hover {
+		text-decoration: none;
+	}
+	.signup-form form a {
+		color: #19aa8d;
+		text-decoration: none;
+	}
+	.signup-form form a:hover {
+		text-decoration: underline;
+	}
+	.signup-form .fa {
+		font-size: 21px;
+	}
+	.signup-form .fa-paper-plane {
+		font-size: 18px;
+	}
+	.signup-form .fa-check {
+		color: #fff;
+		left: 17px;
+		top: 18px;
+		font-size: 7px;
+		position: absolute;
+	}
+
+	.yellowBlob{
+	    position: absolute;
+	    left: -6%;
+	    z-index:-1;
+	}
+
+	.blueBlob{
+	    position: absolute;
+	    top: 10%;
+	    right: -8%;
+	    z-index:-1;
+	}
+
+
+    </style>
+</head>
+<body>
+
+  <svg class="yellowBlob" viewBox="0 0 200 200" width="300px" height="150px" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#fbdea6"
+              d="M47.1,-66.3C59.6,-55.7,67.3,-40,73.5,-23.3C79.8,-6.6,84.6,11.3,80,26.1C75.3,41,61.2,52.9,46.3,63.8C31.4,74.7,15.7,84.5,0,84.5C-15.6,84.5,-31.3,74.5,-45.8,63.5C-60.4,52.5,-73.8,40.4,-81.2,24.7C-88.6,9,-89.9,-10.3,-84.5,-27.7C-79.2,-45.1,-67.2,-60.5,-52,-70.3C-36.8,-80.1,-18.4,-84.2,-0.6,-83.4C17.3,-82.6,34.6,-77,47.1,-66.3Z"
+              transform="translate(100 100)"/>
+    </svg>
+
+
+  <svg class="blueBlob" viewBox="0 0 200 200" width="300px" height="150px" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#a7bde4"
+          d="M59.5,-45.3C75.1,-27.8,84.4,-3.2,79.8,18.7C75.2,40.7,56.7,60,34.9,69.3C13,78.6,-12.1,77.9,-30.3,67.4C-48.5,56.9,-59.8,36.6,-65.7,14C-71.7,-8.5,-72.2,-33.3,-60.4,-49.8C-48.5,-66.4,-24.3,-74.8,-1.2,-73.9C21.9,-73,43.9,-62.7,59.5,-45.3Z"
+          transform="translate(100 100)"/>
+</svg>
+
+<div class="signup-form" >
+      <svg viewBox="0 0 200 200" width="300px" height="50px" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#f9f9f9"
+              d="M47.1,-66.3C59.6,-55.7,67.3,-40,73.5,-23.3C79.8,-6.6,84.6,11.3,80,26.1C75.3,41,61.2,52.9,46.3,63.8C31.4,74.7,15.7,84.5,0,84.5C-15.6,84.5,-31.3,74.5,-45.8,63.5C-60.4,52.5,-73.8,40.4,-81.2,24.7C-88.6,9,-89.9,-10.3,-84.5,-27.7C-79.2,-45.1,-67.2,-60.5,-52,-70.3C-36.8,-80.1,-18.4,-84.2,-0.6,-83.4C17.3,-82.6,34.6,-77,47.1,-66.3Z"
+              transform="translate(100 100)"/>
+        </svg>
+
+
+    <form action="/examples/actions/confirmation.php" method="post">
+        <div class="text-center">
+            <h2>Register Today!</h2>
+            <p>Please fill in the following information</p>
+
+        </div>
+
+        <hr>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                <input type="email" class="form-control" name="email" placeholder="Email Address" required="required">
+            </div>
+        </div>
+
+        <script>
+            var check = function() {
+              if (document.getElementById('password').value ==
+                document.getElementById('confirm_password').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Your passwords match!';
+              }
+
+              else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Your passwords do not match, please try again';
+              }
+            }
+
+
+
+        </script>
+        <div class="form-group">
+            <div class="input-group">
+
+
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+
+
+                <input name="password" id="password" type="password" class="form-control" placeholder="Password"
+                       required="required" onkeyup='check();'/>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+        				<span class="input-group-addon">
+        					<i class="fa fa-lock"></i>
+        					<i class="fa fa-check"></i>
+        				</span>
+
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control"
+                       placeholder="Confirm Password" required="required" onkeyup='check();'/>
+
+            </div>
+        </div>
+
+        <div class="text-center"><span id='message'></span></div>
+
+        <script>
+            $(function() {
+              var checkboxes = $("#group0001,#groupsAll")
+              checkboxes.on("change", function(e) {
+                console.log("h", $(this.form).serialize())
+                checkboxes[0].setCustomValidity(checkboxes.filter(":checked").length ? '' : 'Please select at least one option to proceed')
+              }).change()
+            })
+
+
+        </script>
+
+        <form id="unsubscribe">
+
+            <div class="text-center">
+                <span> I am signing up as a: </span>
+                <input type="checkbox" id="group0001" name="group0001" value="on" class="check custom-class">
+                <label for="group0001">Student</label>
+                <input type="checkbox" id="groupsAll" name="groupsAll" value="on" class="check custom-class">
+                <label for="groupsAll">Mentor</label>
+
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>
+                </div>
+
+            </div>
+
+
+        </form>
+
+
+    </form>
+    <div class="text-center">Already have an account? <a href="#">Login here</a></div>
+</div>
+</body>
+</html>
+
+<!--        <form name="frmSave" id="frmSave" class="frm-Submit" autocomplete="off">-->
+<!--            <div class="form-group required">-->
+
+<!--                <div class="checkbox">-->
+<!--                    <span> I am signing up as:  </span>-->
+<!--                    <label for="user">-->
+<!--                        <input type="checkbox" name="frm_isuser" id="frm_isuser" data-toggle="collapse"-->
+<!--                               data-target="#user-account"> <span>Student</span>-->
+<!--                    </label>-->
+<!--                    <label for="staff">-->
+<!--                        <input type="checkbox" name="frm_isstaff" id="frm_isstaff" data-toggle="collapse"-->
+<!--                               data-target="#staff-account"> <span>Mentor</span>-->
+<!--                    </label>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+<!--        </form>-->
