@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form>
+<form method="post">
 
     <label for="name">Name </label> <br>
     <input type="text" id="name" name="name" placeholder={{current_user.name}}> <br>
@@ -16,23 +16,49 @@
 
 
     <label for="email"> </label>Email <br>
-    <input type="text" id = "email" name = "email" placeholder = {{current_user.email}}> <br>
+    <input type="email" id = "email" name = "email" placeholder = {{current_user.email}}> <br>
 
     <br>
 
+    <script>
+            var check = function() {
+              if (document.getElementById('updatePassword').value ==
+                document.getElementById('confirmPassword').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Your passwords match!';
+              }
+
+              else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Your passwords do not match, please try again';
+              }
+            }
+
+        </script>
+
     <label for = "updatePassword"> </label>Update Password <br>
-    <input type="text" name="updatePassword" id = "updatePassword"  placeholder="Enter new password"> <br>
+    <input type="password" name="updatePassword" id = "updatePassword"  placeholder="Enter new password" onkeyup='check();'> <br>
 
     <br>
 
     <label for = "confirmpassword"> </label>Confirm Password <br>
-    <input type="text" name="confirmPassword" id = "confirmPassword" placeholder="Confirm above password"> <br>
+    <input type="password" name="confirmPassword" id = "confirmPassword" placeholder="Confirm above password" onkeyup='check();'> <br>
+
+
+    <div class="text-left"><span id='message'></span></div>
 
     <br>
+
+
+
+
 
     <label for="bio">Bio </label> <br>
     <input type="text" id="bio" name="bio"> <br>
 
+    <br>
+
+    <button type="submit" class="btn btn-primary btn-lg">Update Info</button>
 
 
 </form>

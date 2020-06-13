@@ -70,12 +70,31 @@ def logout():
     print('logged out user')
     return redirect("/")
 
+@login_required
 @app.route("/profile")
 def profile():
     return render_template("profile.html")
 
-@app.route("/editProfile")
+@login_required
+@app.route("/editProfile", methods=['GET', 'POST'])
 def editProfile():
+    if request.method == 'POST':
+
+        updateEntry = {}
+
+        requestIds = ["name", "header", "email", "updatePassword", "bio"]
+        dbIds = ["name", "header", "email", "password", "bio"]
+
+        for x in range (0, len(requestIds)):
+            if request.form[requestIds[x]] != "":
+                updateEntry[dbIds[x]] = request.form[requestIds[x]]
+            else:
+                updateEntry[dbIds[x]] = dbIds[x]
+
+        requests.post(api_base_url + "updateEndPoint", json=updateEntry)
+
+        return redirect(url_for('profile'))
+
     return render_template("editProfile.html")
 
 @app.route("/register", methods=['GET', 'POST'])
