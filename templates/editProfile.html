@@ -2,9 +2,40 @@
 
 {% block content %}
 
+<form>
+
+    <label for="name">Name </label> <br>
+    <input type="text" id="name" name="name" placeholder={{current_user.name}}> <br>
+
+    <br>
+
+    <label for="header">Header </label><br>
+    <input type="text" id="header" name="header" placeholder={{current_user.header}}> <br>
+
+    <br>
+
+
+    <label for="email"> </label>Email <br>
+    <input type="text" id = "email" name = "email" placeholder = {{current_user.email}}> <br>
+
+    <br>
+
+    <label for = "updatePassword"> </label>Update Password <br>
+    <input type="text" name="updatePassword" id = "updatePassword"  placeholder="Enter new password"> <br>
+
+    <br>
+
+    <label for = "confirmpassword"> </label>Confirm Password <br>
+    <input type="text" name="confirmPassword" id = "confirmPassword" placeholder="Confirm above password"> <br>
+
+    <br>
+
+    <label for="bio">Bio </label> <br>
+    <input type="text" id="bio" name="bio"> <br>
 
 
 
+</form>
 
 
 {% endblock %}
