@@ -12,14 +12,18 @@
         <div style="text-align: center;">
         <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src={{current_user.image}} name="aboutme" width="140" height="140" class="img-circle"></a>
         <h3>{{current_user.name}}</h3>
-            {% for keyword in keywords %}
-                <span class="badge badge-pill badge-primary">{{current_user.keyword}}</span>
+            {% for keyword in current_user.keywords %}
+                <span class="badge badge-pill badge-primary">{{keyword}}</span>
             {% endfor %}
                     <p class="text-left"><strong>Bio: </strong><br>
                      {{current_user.bio}}</p>
                     <br>
 		</div>
     </div>
+
+    <button type="button"><a href="editProfile">Edit Profile</a></button>
+
+
     
 </div>
 
