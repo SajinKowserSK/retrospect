@@ -6,7 +6,7 @@ var port = 5000;
 app.set('views','./views'); // set html folder to views.
 app.set('view engine', 'ejs'); 
 
-app.use(express.static(__dirname + '/old_static')); // set old_static folder to ./old_static.
+app.use(express.static(__dirname + '/static')); // set static folder to ./static.
 
 app.use(express.urlencoded()); // Parse URL-encoded bodies (as sent by HTML forms)
 
