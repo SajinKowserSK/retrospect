@@ -20,14 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/billiondollar2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/billiondollar2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/editProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/editProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,21 +116,21 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1165" height="289" key="GridCell.Tab.0.bottom" timestamp="1595782421172">
+    <state width="1165" height="289" key="GridCell.Tab.0.bottom" timestamp="1595791131108">
       <screen x="1920" y="246" width="1920" height="1040" />
     </state>
-    <state width="1165" height="289" key="GridCell.Tab.0.bottom/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595782421172" />
-    <state width="1165" height="289" key="GridCell.Tab.0.center" timestamp="1595782421172">
+    <state width="1165" height="289" key="GridCell.Tab.0.bottom/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595791131108" />
+    <state width="1165" height="289" key="GridCell.Tab.0.center" timestamp="1595791131108">
       <screen x="1920" y="246" width="1920" height="1040" />
     </state>
-    <state width="1165" height="289" key="GridCell.Tab.0.center/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595782421172" />
-    <state width="1165" height="289" key="GridCell.Tab.0.left" timestamp="1595782421172">
+    <state width="1165" height="289" key="GridCell.Tab.0.center/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595791131108" />
+    <state width="1165" height="289" key="GridCell.Tab.0.left" timestamp="1595791131108">
       <screen x="1920" y="246" width="1920" height="1040" />
     </state>
-    <state width="1165" height="289" key="GridCell.Tab.0.left/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595782421172" />
-    <state width="1165" height="289" key="GridCell.Tab.0.right" timestamp="1595782421172">
+    <state width="1165" height="289" key="GridCell.Tab.0.left/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595791131108" />
+    <state width="1165" height="289" key="GridCell.Tab.0.right" timestamp="1595791131108">
       <screen x="1920" y="246" width="1920" height="1040" />
     </state>
-    <state width="1165" height="289" key="GridCell.Tab.0.right/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595782421172" />
+    <state width="1165" height="289" key="GridCell.Tab.0.right/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1595791131108" />
   </component>
 </project>

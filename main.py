@@ -101,18 +101,47 @@ def profile():
 @login_required
 @app.route("/editProfile", methods = ['GET', 'POST'])
 def editProfile():
-    # if request.method == 'GET':
-    #     return render_template("editProfile.html")
+    if request.method == 'GET':
+        return render_template("editProfile.html")
 
-    return render_template("editProfile.html")
-    # else:
-    #     if request.form['name']:
-    #         updateName(current_user.email, request.form['name'])
-    #
-    #         return redirect(url_for('profile'))
+    # make sure password is good
+
+    else:
+
+        userEntry = {}
+        userEntry["email"] = current_user.email
+        userEntry["password"] = request.form['currentPassword']
+        response = requests.post(api_base_url + "mentors", json=userEntry)
+
+        if response.status_code != 200:
+            message = 'Incorrect Password'
+            return render_template("editProfile.html", message=message)
 
 
+        if request.form['updatePassword'] != request.form['confirmPassword']:
+            message = 'Passwords do not match'
+            return render_template("editProfile.html", message=message)
 
+
+        email = current_user.email
+        if request.form['name']:
+            updateName(email, request.form['name'])
+
+
+        if request.form['header']:
+            updateHeader(email, request.form['header'])
+
+        if request.form['email']:
+            updateEmail(email, request.form['email'])
+
+
+        if request.form['updatePassword']:
+            updatePassword(email, request.form['updatePassword'])
+
+        if request.form['bio']:
+            updateBio(email, request.form['bio'])
+
+        return redirect(url_for('profile'))
 
 
 @app.route("/register", methods=['GET', 'POST'])
