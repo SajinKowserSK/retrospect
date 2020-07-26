@@ -41,6 +41,9 @@
         <label for = "updatePassword"> </label>Update Password <br>
         <input type="password" name="updatePassword" id = "updatePassword" onkeyup='check();'> <br>
 
+        <p>*Please note password must have 5 characters consisting of only letters and numbers,
+            start with a letter and have at least one number </p>
+
         <br>
 
         <label for = "confirmpassword"> </label>Confirm Password <br>
@@ -60,8 +63,12 @@
 
         <br>
 
-        <label for="currentPassword">Enter Current Password </label> <br>
-        <input type="password" id="currentPassword" name="currentPassword"> <br>
+        <label for="currentPassword">Enter Current Password</label> <br>
+
+        <input type="password" id="currentPassword" name="currentPassword" required>
+
+
+         <br>
 
         <br>
 

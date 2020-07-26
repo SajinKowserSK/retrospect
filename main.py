@@ -3,6 +3,7 @@ from db import *
 import requests
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User
+import re
 import bcrypt
 from pymongo.errors import DuplicateKeyError
 
@@ -136,7 +137,14 @@ def editProfile():
 
 
         if request.form['updatePassword']:
-            updatePassword(email, request.form['updatePassword'])
+            if len(request.form['updatePassword']) >= 5 and re.match(r"^[A-Za-z]+\d\w*$", request.form['updatePassword']):
+                updatePassword(email, request.form['updatePassword'])
+
+            else:
+                message = "Password does not meet requirements"
+                return render_template("editProfile.html", message=message)
+
+
 
         if request.form['bio']:
             updateBio(email, request.form['bio'])
