@@ -1,7 +1,10 @@
 import pymongo
-from pymongo import MongoClient
+from pymongo import mongo_client
+
 
 client = pymongo.MongoClient("mongodb+srv://shafinsiddique:Ishafin98@cluster0-jrksj.mongodb.net/<billiondollar>?retryWrites=true&w=majority")
+db = client.test
+
 main_db = client.get_database("billiondollar")
 
 mentors_collection = main_db.get_collection("mentors")
@@ -15,14 +18,4 @@ def updateName(email, new):
         mentors_collection.update_one({'email': email}, {'$set': {'name': new}})
 
 
-def updateHeader(email, new):
-    return
-
-def updateEmail(email, new):
-    return
-
-def updatePassword(email, new):
-    return
-
-def updateBio(email, new):
-    return
+updateName('sajinkowser@gmail.com', 'sajinv2')

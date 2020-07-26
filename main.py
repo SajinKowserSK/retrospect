@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from db import *
 import requests
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User
@@ -47,7 +48,8 @@ def login():
         if response.status_code == 200:
             user = User(response.json())
             user.authenticated = True
-            login_user(user, remember=True)
+            login_user(user)
+            session['logged_in'] = True
             print("logged in user")
             return redirect(url_for('profile'))
 
@@ -75,36 +77,43 @@ def logout():
 def profile():
     return render_template("profile.html")
 
-<<<<<<< HEAD
+# @login_required
+# @app.route("/editProfile", methods=['GET', 'POST'])
+# def editProfile():
+#     if request.method == 'POST':
+#
+#         updateEntry = {}
+#
+#         requestIds = ["name", "header", "email", "updatePassword", "bio"]
+#         dbIds = ["name", "header", "email", "password", "bio"]
+#
+#         for x in range (0, len(requestIds)):
+#             if request.form[requestIds[x]] != "":
+#                 updateEntry[dbIds[x]] = request.form[requestIds[x]]
+#             else:
+#                 updateEntry[dbIds[x]] = dbIds[x]
+#
+#         requests.post(api_base_url + "updateEndPoint", json=updateEntry)
+#
+#         return redirect(url_for('profile'))
+#
+#     return render_template("editProfile.html")
 @login_required
-@app.route("/editProfile", methods=['GET', 'POST'])
-def editProfile():
-    if request.method == 'POST':
-
-        updateEntry = {}
-
-        requestIds = ["name", "header", "email", "updatePassword", "bio"]
-        dbIds = ["name", "header", "email", "password", "bio"]
-
-        for x in range (0, len(requestIds)):
-            if request.form[requestIds[x]] != "":
-                updateEntry[dbIds[x]] = request.form[requestIds[x]]
-            else:
-                updateEntry[dbIds[x]] = dbIds[x]
-
-        requests.post(api_base_url + "updateEndPoint", json=updateEntry)
-
-        return redirect(url_for('profile'))
-
-    return render_template("editProfile.html")
-=======
 @app.route("/editProfile", methods = ['GET', 'POST'])
 def editProfile():
-    if request.method == 'GET':
-        return render_template("editProfile.html")
+    # if request.method == 'GET':
+    #     return render_template("editProfile.html")
+
+    return render_template("editProfile.html")
+    # else:
+    #     if request.form['name']:
+    #         updateName(current_user.email, request.form['name'])
+    #
+    #         return redirect(url_for('profile'))
 
 
->>>>>>> 38dafa19de9da27100bc16bb2a17bf59834fd29d
+
+
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():

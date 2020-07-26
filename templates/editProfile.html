@@ -1,67 +1,83 @@
-{% extends "loggedin_layout.html" %}
+{% if session.logged_in %}
 
-{% block content %}
+    {% extends "loggedin_layout.html" %}
 
-<form method="post">
+    {% block content %}
 
-    <label for="name">Name </label> <br>
-    <input type="text" id="name" name="name" placeholder={{current_user.name}}> <br>
+    <form method="post">
 
-    <br>
+        <label for="name">Name </label> <br>
+        <input type="text" id="name" name="name" placeholder={{current_user.name}}> <br>
 
-    <label for="header">Header </label><br>
-    <input type="text" id="header" name="header" placeholder={{current_user.header}}> <br>
+        <br>
 
-    <br>
+        <label for="header">Header </label><br>
+        <input type="text" id="header" name="header" placeholder={{current_user.header}}> <br>
 
-
-    <label for="email"> </label>Email <br>
-    <input type="email" id = "email" name = "email" placeholder = {{current_user.email}}> <br>
-
-    <br>
-
-    <script>
-            var check = function() {
-              if (document.getElementById('updatePassword').value ==
-                document.getElementById('confirmPassword').value) {
-                document.getElementById('message').style.color = 'green';
-                document.getElementById('message').innerHTML = 'Your passwords match!';
-              }
-
-              else {
-                document.getElementById('message').style.color = 'red';
-                document.getElementById('message').innerHTML = 'Your passwords do not match, please try again';
-              }
-            }
-
-        </script>
-
-    <label for = "updatePassword"> </label>Update Password <br>
-    <input type="password" name="updatePassword" id = "updatePassword"  placeholder="Enter new password" onkeyup='check();'> <br>
-
-    <br>
-
-    <label for = "confirmpassword"> </label>Confirm Password <br>
-    <input type="password" name="confirmPassword" id = "confirmPassword" placeholder="Confirm above password" onkeyup='check();'> <br>
+        <br>
 
 
-    <div class="text-left"><span id='message'></span></div>
+        <label for="email"> </label>Email <br>
+        <input type="email" id = "email" name = "email" placeholder = {{current_user.email}}> <br>
 
-    <br>
+        <br>
+
+        <script>
+                var check = function() {
+                  if (document.getElementById('updatePassword').value ==
+                    document.getElementById('confirmPassword').value) {
+                    document.getElementById('message').style.color = 'green';
+                    document.getElementById('message').innerHTML = 'Your passwords match!';
+                  }
+
+                  else {
+                    document.getElementById('message').style.color = 'red';
+                    document.getElementById('message').innerHTML = 'Your passwords do not match, please try again';
+                  }
+                }
+
+            </script>
+
+        <label for = "updatePassword"> </label>Update Password <br>
+        <input type="password" name="updatePassword" id = "updatePassword"  placeholder="Enter new password" onkeyup='check();'> <br>
+
+        <br>
+
+        <label for = "confirmpassword"> </label>Confirm Password <br>
+        <input type="password" name="confirmPassword" id = "confirmPassword" placeholder="Confirm above password" onkeyup='check();'> <br>
+
+
+        <div class="text-left"><span id='message'></span></div>
+
+        <br>
 
 
 
 
 
-    <label for="bio">Bio </label> <br>
-    <input type="text" id="bio" name="bio"> <br>
+        <label for="bio">Bio </label> <br>
+        <input type="text" id="bio" name="bio"> <br>
 
-    <br>
+        <br>
 
-    <button type="submit" class="btn btn-primary btn-lg">Update Info</button>
-
-
-</form>
+        <button type="submit" class="btn btn-primary btn-lg">Update Info</button>
 
 
-{% endblock %}
+    </form>
+
+
+    {% endblock %}
+
+{% else %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="1; url='/login" />
+  </head>
+  <body>
+    <p>Redirecting</p>
+  </body>
+</html>
+
+{% endif %}
