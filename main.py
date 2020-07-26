@@ -75,6 +75,7 @@ def logout():
 def profile():
     return render_template("profile.html")
 
+<<<<<<< HEAD
 @login_required
 @app.route("/editProfile", methods=['GET', 'POST'])
 def editProfile():
@@ -96,6 +97,14 @@ def editProfile():
         return redirect(url_for('profile'))
 
     return render_template("editProfile.html")
+=======
+@app.route("/editProfile", methods = ['GET', 'POST'])
+def editProfile():
+    if request.method == 'GET':
+        return render_template("editProfile.html")
+
+
+>>>>>>> 38dafa19de9da27100bc16bb2a17bf59834fd29d
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
