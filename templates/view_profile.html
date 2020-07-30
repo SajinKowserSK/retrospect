@@ -1,0 +1,46 @@
+
+
+    {% extends "loggedin_layout.html" %}
+
+    {% block content %}
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <div class="container">
+        <div class="span3 well">
+            <div style="text-align: center;">
+            <a href="#aboutModal" data-toggle="modal" data-target="#myModal"><img src={{searched_user.image}} name="aboutme" width="140" height="140" class="img-circle"></a>
+            <h3>{{searched_user.name}}</h3>
+                {% for keyword in searched_user.keywords %}
+                    <span class="badge badge-pill badge-primary">{{keyword}}</span>
+                {% endfor %}
+                        <p class="text-left"><strong>Bio: </strong><br>
+                         {{searched_user.bio}}</p>
+                        <br>
+            </div>
+        </div>
+
+        <button type="button"><a href="editProfile">Chat</a></button>
+
+    </div>
+
+
+    {% endblock %}
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="refresh" content="1; url='/login" />
+  </head>
+  <body>
+    <p>Redirecting</p>
+  </body>
+</html>
+
+
+
