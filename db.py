@@ -9,6 +9,10 @@ mentors_collection = main_db.get_collection("mentors")
 
 students_collection = main_db.get_collection("students")
 
+def getUser(email):
+    return mentors_collection.find_one({'email': email})
+
+
 def updateName(email, new):
     foundUser = mentors_collection.find_one({'email': email})
 
@@ -28,13 +32,17 @@ def updateEmail(email, new):
     if foundUser:
         mentors_collection.update_one({'email': email}, {'$set': {'email': new}})
 
+# STANDARDIZE HASHING IN SIGN UP PROCESS VS HERE
 def updatePassword(email, new):
-    foundUser = mentors_collection.find_one({'email': email})
+    return
 
-    if foundUser:
-        salt = bcrypt.gensalt()
-        hashedPassword = bcrypt.hashpw(new.encode('utf-8'), salt)
-        mentors_collection.update_one({'email': email}, {'$set': {'password': hashedPassword}})
+
+    # foundUser = mentors_collection.find_one({'email': email})
+    #
+    # if foundUser:
+    #     salt = bcrypt.gensalt()
+    #     hashedPassword = bcrypt.hashpw(new.encode('utf-8'), salt)
+    #     mentors_collection.update_one({'email': email}, {'$set': {'password': hashedPassword}})
 
 def updateBio(email, new):
     foundUser = mentors_collection.find_one({'email': email})

@@ -1,4 +1,5 @@
-import re
-if re.match(r"^[A-Za-z]+\d\w*$", 'Shajin123'):
-    print('Yes')
-
+import bcrypt
+pwd = 'Shajin564201'
+salt = bcrypt.gensalt()
+hashedPassword = bcrypt.hashpw(pwd.encode('utf-8'), salt)
+print(hashedPassword)

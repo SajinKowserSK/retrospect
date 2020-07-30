@@ -21,7 +21,12 @@ login_manager.init_app(app)
 
 @login_manager.user_loader
 def load_user(email):
-    return User(requests.get(api_base_url + "mentors/?email="+email).json()[0])
+
+    try:
+        return User(requests.get(api_base_url + "mentors/?email="+email).json()[0])
+
+    except:
+        sess
 
 @app.route('/',methods=['GET'])
 def home():
@@ -52,7 +57,7 @@ def login():
             login_user(user)
             session['logged_in'] = True
             print("logged in user")
-            return redirect(url_for('profile'))
+            return redirect(url_for('profileRedirect'))
 
         elif response.status_code == 404:
             return render_template("login.html", msgResponse="User not found".upper())
@@ -70,18 +75,35 @@ def login():
 @login_required
 def logout():
     logout_user()
+    session['logged_in'] = False
     print('logged out user')
     return redirect("/")
 
-@login_required
+
 @app.route("/profile")
-def profile():
-
-
-    return render_template("profile.html")
-
 @login_required
+def profileRedirect():
+    return redirect(profile(current_user.email))
+
+@app.route("/profile/<username>")
+def profile(username):
+    tmpUser = getUser(username)
+
+    if tmpUser is None:
+        return render_template('Error.html')
+
+    elif current_user is not None and tmpUser != current_user:
+        return render_template('view_profile.html', searched_user = tmpUser)
+
+    elif tmpUser is not None and current_user is not None and tmpUser == current_user:
+        return render_template('profile.html')
+
+    else:
+        return render_template("Error.html")
+
+
 @app.route("/editProfile", methods = ['GET', 'POST'])
+@login_required
 def editProfile():
     if request.method == 'GET':
         return render_template("editProfile.html")
@@ -131,7 +153,7 @@ def editProfile():
         if request.form['bio']:
             updateBio(email, request.form['bio'])
 
-        return redirect(url_for('profile'))
+        return redirect(url_for('profileRedirect'))
 
 
 @app.route("/register", methods=['GET', 'POST'])
