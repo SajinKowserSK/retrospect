@@ -98,11 +98,11 @@ def profile(username):
     if tmpUser is None:
         return render_template('Error.html')
 
-    elif current_user is not None and tmpUser != current_user:
-        return render_template('view_profile.html', searched_user = tmpUser)
-
-    elif tmpUser is not None and current_user is not None and tmpUser == current_user:
+    elif current_user.email == username:
         return render_template('profile.html')
+
+    elif current_user is None or current_user.email != username:
+        return render_template('view_profile.html', searched_user = tmpUser)
 
     else:
         return render_template("Error.html")
