@@ -23,10 +23,12 @@ login_manager.init_app(app)
 def load_user(email):
 
     try:
-        return User(requests.get(api_base_url + "mentors/?email="+email).json()[0])
+        response = requests.get(api_base_url + "mentors/?email="+email).json()
+        if len(response) > 0:
+            return User(response[0])
 
     except:
-        sess
+        return redirect(home)
 
 @app.route('/',methods=['GET'])
 def home():
@@ -80,10 +82,14 @@ def logout():
     return redirect("/")
 
 
+# PROBLEM
 @app.route("/profile")
 @login_required
 def profileRedirect():
-    return redirect(profile(current_user.email))
+    return redirect(url_for('profile', username=current_user.email))
+
+
+# just check if username == current_user.email instead of makking a whole tmp user
 
 @app.route("/profile/<username>")
 def profile(username):
