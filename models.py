@@ -1,4 +1,7 @@
 from flask_login import UserMixin
+from flask_login import AnonymousUserMixin
+
+
 class User(UserMixin):
     def __init__(self, user_dict):
         self.name = user_dict['name']
@@ -7,6 +10,9 @@ class User(UserMixin):
         self.keywords = user_dict['keywords']
         self.image = user_dict['image']
         self.authenticated = False
+
+    def is_anonymous(self):
+        return False
 
     @staticmethod
     def is_authenticated(self):
@@ -17,9 +23,6 @@ class User(UserMixin):
 
     def get_id(self):
         return self.email
-
-    def is_authenticated(self):
-        return self.authenticated
 
     def is_anonymous(self):
         return False

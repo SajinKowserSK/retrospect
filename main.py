@@ -98,10 +98,10 @@ def profile(username):
     if tmpUser is None:
         return render_template('Error.html')
 
-    elif current_user.email == username:
+    elif current_user.is_anonymous == False and current_user.email == username:
         return render_template('profile.html')
 
-    elif current_user is None or current_user.email != username:
+    elif current_user.is_anonymous == True or current_user.email != username:
         return render_template('view_profile.html', searched_user = tmpUser)
 
     else:
