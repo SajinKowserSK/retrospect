@@ -9,8 +9,8 @@ mentors_collection = main_db.get_collection("mentors")
 
 students_collection = main_db.get_collection("students")
 
-def getUser(email):
-    return mentors_collection.find_one({'email': email})
+def getUser(url):
+    return mentors_collection.find_one({'url': url})
 
 
 def updateName(email, new):

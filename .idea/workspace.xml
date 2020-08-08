@@ -23,6 +23,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,25 +119,33 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="351" y="40" key="#test" timestamp="1596826750292">
+      <screen x="0" y="40" width="1280" height="680" />
+    </state>
+    <state x="351" y="40" key="#test/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826750292" />
     <state x="2660" y="521" key="FileChooserDialogImpl" timestamp="1596322593184">
       <screen x="1920" y="246" width="1920" height="1040" />
     </state>
     <state x="2660" y="521" key="FileChooserDialogImpl/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596322593184" />
-    <state width="1921" height="289" key="GridCell.Tab.0.bottom" timestamp="1596134888703">
-      <screen x="1920" y="246" width="1920" height="1040" />
+    <state width="1281" height="304" key="GridCell.Tab.0.bottom" timestamp="1596826922897">
+      <screen x="0" y="40" width="1280" height="680" />
     </state>
+    <state width="1281" height="304" key="GridCell.Tab.0.bottom/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826922897" />
     <state width="1921" height="289" key="GridCell.Tab.0.bottom/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596134888703" />
-    <state width="1921" height="289" key="GridCell.Tab.0.center" timestamp="1596134888703">
-      <screen x="1920" y="246" width="1920" height="1040" />
+    <state width="1281" height="304" key="GridCell.Tab.0.center" timestamp="1596826922897">
+      <screen x="0" y="40" width="1280" height="680" />
     </state>
+    <state width="1281" height="304" key="GridCell.Tab.0.center/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826922897" />
     <state width="1921" height="289" key="GridCell.Tab.0.center/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596134888703" />
-    <state width="1921" height="289" key="GridCell.Tab.0.left" timestamp="1596134888703">
-      <screen x="1920" y="246" width="1920" height="1040" />
+    <state width="1281" height="304" key="GridCell.Tab.0.left" timestamp="1596826922897">
+      <screen x="0" y="40" width="1280" height="680" />
     </state>
+    <state width="1281" height="304" key="GridCell.Tab.0.left/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826922897" />
     <state width="1921" height="289" key="GridCell.Tab.0.left/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596134888703" />
-    <state width="1921" height="289" key="GridCell.Tab.0.right" timestamp="1596134888703">
-      <screen x="1920" y="246" width="1920" height="1040" />
+    <state width="1281" height="304" key="GridCell.Tab.0.right" timestamp="1596826922897">
+      <screen x="0" y="40" width="1280" height="680" />
     </state>
+    <state width="1281" height="304" key="GridCell.Tab.0.right/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826922897" />
     <state width="1921" height="289" key="GridCell.Tab.0.right/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596134888703" />
   </component>
   <component name="XDebuggerManager">
@@ -143,7 +153,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>109</line>
+          <line>114</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

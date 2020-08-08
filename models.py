@@ -10,6 +10,7 @@ class User(UserMixin):
         self.keywords = user_dict['keywords']
         self.image = user_dict['image']
         self.authenticated = False
+        self.URL = user_dict["url"]
 
     def is_anonymous(self):
         return False

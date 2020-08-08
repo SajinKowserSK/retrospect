@@ -38,10 +38,16 @@ def home():
     return render_template("index.html")
   
 
-@app.route('/mentors',methods=['POST'])
+@app.route('/mentors',methods=['GET', 'POST'])
 def mentors():
-    return render_template("mentors.html",
-                               mentors=requests.get(api_base_url + "mentors/?keywords="+request.form['keywords']).json(), keywords=request.form['keywords'])
+    if request.method == 'GET':
+        return render_template("mentors.html")
+
+    if request.method == 'POST':
+        return render_template("mentors.html",
+                                   mentors=requests.get(api_base_url +
+                                   "mentors/?keywords="+request.form['keywords']).json(),
+                                   keywords=request.form['keywords'])
 
 @app.route("/login", methods=['GET','POST'])
 def login():
@@ -50,6 +56,7 @@ def login():
         userEntry = {}
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
+
 
         response = requests.post(api_base_url + "mentors", json=userEntry)
         tagColors = ['default', 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light']
@@ -86,22 +93,20 @@ def logout():
 @app.route("/profile")
 @login_required
 def profileRedirect():
-    return redirect(url_for('profile', username=current_user.email))
+    return redirect(url_for('profile', url=current_user.URL))
 
 
 # just check if username == current_user.email instead of makking a whole tmp user
 
-@app.route("/profile/<username>")
-def profile(username):
-    tmpUser = getUser(username)
+@app.route("/profile/<url>")
+def profile(url):
+    tmpUser = getUser(url)
 
-    if tmpUser is None:
-        return render_template('Error.html')
 
-    elif current_user.is_anonymous == False and current_user.email == username:
+    if current_user.is_anonymous == False and current_user.URL == url:
         return render_template('profile.html')
 
-    elif current_user.is_anonymous == True or current_user.email != username:
+    elif current_user.is_anonymous == True or current_user.URL != url:
         return render_template('view_profile.html', searched_user = tmpUser)
 
     else:
@@ -162,6 +167,7 @@ def editProfile():
         return redirect(url_for('profileRedirect'))
 
 
+# VERY IMPORTANT -- HVE TO MAKE SURE PROFILE URLS ARE UNIQUE
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -173,11 +179,12 @@ def register():
         userEntry = {}
         userEntry["email"] = request.form['emailID']
         userEntry["password"] = request.form['passwordID']
-        userEntry["name"] = ""
-        userEntry["keywords"] = []
-        userEntry["bio"] = ""
+        userEntry["name"] = request.form["name"]
+        userEntry["keywords"] = request.form["keywords"].split(",")
+        userEntry["bio"] = request.form["bio"]
         userEntry["image"] = "https://ibb.co/gF3MV75"
-        userEntry["header"] = ""
+        userEntry["header"] = request.form["header"]
+        userEntry["url"] = request.form["URL"]
 
 
         response = requests.post(api_base_url + "newmentor", json=userEntry)
