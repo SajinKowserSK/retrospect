@@ -49,3 +49,17 @@ def updateBio(email, new):
 
     if foundUser:
         mentors_collection.update_one({'email': email}, {'$set': {'bio': new}})
+
+
+def updateBio(email, new):
+    foundUser = mentors_collection.find_one({'email': email})
+
+    if foundUser:
+        mentors_collection.update_one({'email': email}, {'$set': {'bio': new}})
+
+def updateURL(email, new):
+    foundUser = mentors_collection.find_one({'email': email})
+    foundURL = mentors_collection.find_one({'url':new})
+
+    if foundUser and not foundURL:
+        mentors_collection.update_one({'email': email}, {'$set': {'url': new}})

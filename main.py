@@ -102,7 +102,6 @@ def profileRedirect():
 def profile(url):
     tmpUser = getUser(url)
 
-
     if current_user.is_anonymous == False and current_user.URL == url:
         return render_template('profile.html')
 
@@ -159,7 +158,17 @@ def editProfile():
                 message = "Password does not meet requirements"
                 return render_template("editProfile.html", message=message)
 
+        if request.form['URL']:
 
+            if mentors_collection.find_one({'url':request.form['URL']}):
+
+                print(request.form['URL'])
+                print(mentors_collection.find_one({'url':request.form['URL']}))
+                message = "That URL is already in use. Please choose another."
+                return render_template("editProfile.html", message=message)
+
+            else:
+                updateURL(email, request.form['URL'])
 
         if request.form['bio']:
             updateBio(email, request.form['bio'])
@@ -186,6 +195,10 @@ def register():
         userEntry["header"] = request.form["header"]
         userEntry["url"] = request.form["URL"]
 
+
+        if mentors_collection.find_one({'url':request.form['URL']}):
+            message = 'url already exists'
+            return render_template('signup.html', msgResponse =message.upper())
 
         response = requests.post(api_base_url + "newmentor", json=userEntry)
 
