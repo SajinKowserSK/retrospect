@@ -261,10 +261,19 @@ def view_room(room_id):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
 
+        for x in range(0, len(room_members)):
+            curr = room_members[x]
+            curr_url = curr['_id']['username']
+            curr = getUser(curr_url)['name']
+
+            if curr != current_user.name:
+                participant = curr
+
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja
 
         return render_template('view_room.html', username =current_user.name,
+                               participant = participant,
                                room = room, room_members = room_members, messages = messages)
 
     else:
