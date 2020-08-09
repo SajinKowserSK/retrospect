@@ -4,20 +4,44 @@ import requests
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from models import User
 import re
+from flask_socketio import SocketIO, join_room, leave_room
+
 import bcrypt
 from pymongo.errors import DuplicateKeyError
 
 app = Flask(__name__)
 app.secret_key = "shafibullah"
+socketio = SocketIO(app)
 app.run(debug=True)
 api_base_url = "https://barebilliondollar.herokuapp.com/"
 
-# MONGO STUFF
-
-
-
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+
+@socketio.on('send_message')
+def handle_send_message_event(data):
+    app.logger.info("{} has sent message to the room {}: {}".format(data['username'],
+                                                                    data['room'],
+                                                                    data['message']))
+    data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
+    save_message(data['room'], data['message'], data['username'])
+    socketio.emit('receive_message', data, room=data['room'])
+
+
+
+@socketio.on('join_room')
+def handle_join_room_event(data):
+    app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
+    join_room(data['room'])
+    socketio.emit('join_room_announcement', data, room=data['room'])
+
+
+@socketio.on('leave_room')
+def handle_leave_room_event(data):
+    app.logger.info("{} has left the room {}".format(data['username'], data['room']))
+    leave_room(data['room'])
+    socketio.emit('leave_room_announcement', data, room=data['room'])
 
 @login_manager.user_loader
 def load_user(email):
@@ -212,3 +236,38 @@ def register():
             return redirect(url_for('login'))
 
     return render_template('signup.html')
+
+
+
+@app.route('/pm/<mentor>', methods=['GET', 'POST'])
+@login_required
+def messages(mentor):
+    roomName = "Private Chat"
+    mentorAccount = getUser(mentor)
+    print(mentorAccount)
+    roomID = save_room(roomName, current_user.URL)
+    usernames = [mentorAccount['url']]
+
+    add_room_members(roomID, roomName,usernames, current_user.URL)
+    return redirect(url_for('view_room', room_id = roomID))
+
+
+@app.route('/messages/<room_id>', methods=['GET', 'POST'])
+@login_required
+def view_room(room_id):
+    room = get_room(room_id)
+
+    if room and is_room_member(room_id, current_user.URL):
+        room_members = get_room_members(room_id)
+        messages = get_messages(room_id)
+
+        # find other_participant object in room_members list (whether it be by name, url, etc.)
+        # then pass as variable to jinja
+
+        return render_template('view_room.html', username =current_user.name,
+                               room = room, room_members = room_members, messages = messages)
+
+    else:
+        return 'Room not found', 404
+
+
