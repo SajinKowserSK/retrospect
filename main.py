@@ -244,11 +244,16 @@ def register():
 def messages(mentor):
     roomName = "Private Chat"
     mentorAccount = getUser(mentor)
-    print(mentorAccount)
-    roomID = save_room(roomName, current_user.URL)
-    usernames = [mentorAccount['url']]
 
-    add_room_members(roomID, roomName,usernames, current_user.URL)
+    members = sorted([current_user.URL, mentorAccount['url']])
+
+    if check_room_exists(members):
+        roomID = check_room_exists(members)['_id']
+
+    else:
+         roomID = save_room(roomName, current_user.URL, members)
+
+    usernames = [mentorAccount['url']]
     return redirect(url_for('view_room', room_id = roomID))
 
 
@@ -262,8 +267,8 @@ def view_room(room_id):
         messages = get_messages(room_id)
 
         for x in range(0, len(room_members)):
-            curr = room_members[x]
-            curr_url = curr['_id']['username']
+            curr_url = room_members[x]
+
             curr = getUser(curr_url)['name']
 
             if curr != current_user.name:

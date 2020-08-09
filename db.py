@@ -23,11 +23,12 @@ room_members_collection = main_db.get_collection("room_members")
 messages_collection = main_db.get_collection("messages")
 
 
-def save_room(room_name, created_by):
-    room_id = rooms_collection.insert_one(
-        {'name': room_name, 'created_by': created_by, 'created_at': datetime.now()}).inserted_id
+def check_room_exists(members):
+    return rooms_collection.find_one({"members":members})
 
-    add_room_member(room_id, room_name, created_by, created_by, is_room_admin=True)
+def save_room(room_name, created_by, members):
+    room_id = rooms_collection.insert_one(
+        {'name': room_name, 'created_by': created_by, 'members': members, 'created_at': datetime.now()}).inserted_id
     return room_id
 
 def add_room_member(room_id, room_name, username, added_by, is_room_admin=False):
@@ -44,10 +45,20 @@ def get_room(room_id):
     return rooms_collection.find_one({'_id': ObjectId(room_id)})
 
 def is_room_member(room_id, username):
-    return room_members_collection.count_documents({'_id': {'room_id': ObjectId(room_id), 'username': username}})
+    members = rooms_collection.find_one({'_id': ObjectId(room_id)})
+    members = members['members']
+    for member in members:
+        if username == member:
+            return True
+
+    return Falsegig
 
 def get_room_members(room_id):
-    return list(room_members_collection.find({'_id.room_id': ObjectId(room_id)}))
+    #return list(room_members_collection.find({'_id.room_id': ObjectId(room_id)}))
+    members = rooms_collection.find_one({'_id': ObjectId(room_id)})
+
+    members = members['members']
+    return members
 
 def save_message(room_id, text, sender):
     messages_collection.insert_one({'room_id':room_id, 'text': text, 'sender': sender, 'created_at': datetime.now()})
