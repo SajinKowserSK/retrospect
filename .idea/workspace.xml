@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_room.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/view_room.html" afterDir="false" />
-    </list>
+    <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +146,10 @@
     <state width="1281" height="304" key="GridCell.Tab.0.right/0.40.1280.680/1920.-621.1920.1040@0.40.1280.680" timestamp="1596826922897" />
     <state width="1921" height="316" key="GridCell.Tab.0.right/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1596934940544" />
     <state width="1921" height="289" key="GridCell.Tab.0.right/0.40.1280.680/1920.246.1920.1040@1920.246.1920.1040" timestamp="1596134888703" />
+    <state x="2608" y="-207" key="git4idea.ui.GitResetDialog" timestamp="1596956768182">
+      <screen x="1920" y="-621" width="1920" height="1040" />
+    </state>
+    <state x="2608" y="-207" key="git4idea.ui.GitResetDialog/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1596956768182" />
     <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup" timestamp="1596911508114">
       <screen x="1920" y="-621" width="1920" height="1040" />
     </state>

@@ -269,10 +269,19 @@ def view_room(room_id):
         for x in range(0, len(room_members)):
             curr_url = room_members[x]
 
-            curr = getUser(curr_url)['name']
+            curr = getUser(curr_url)
 
-            if curr != current_user.name:
+            if curr['url'] != current_user.URL:
                 participant = curr
+                newDict = {}
+                newDict['name'] = participant['name']
+                newDict['image'] = participant['image']
+
+                remaining = ['email', "bio", "keywords", "url"]
+                for key in remaining:
+                    newDict[key] = "None"
+
+                participant = User(newDict)
 
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja
