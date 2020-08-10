@@ -9,7 +9,7 @@
 
 <div id="messages">
     {% for message in messages %}
-        <div><b>{{message.sender}}&nbsp; [{{message.created_at}}]:&nbsp;</b> {{message.text}}</div>
+    <div><b>{{message.sender}}&nbsp; [{{message.created_at}}]:&nbsp;</b> <p id="messageB"> {{message.text}} </p> </div>
     {% endfor %}
 </div>
 
@@ -87,4 +87,10 @@
         document.getElementById('messages').appendChild(newNode);
     });
 </script>
+
+<style>
+    #messageB{
+        color: red;
+    }
+</style>
 </html>

@@ -1,5 +1,4 @@
 body {
-  background-color: #3498db;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -134,11 +133,17 @@ hr {
 }
 .chat-bubble--right:after {
   right: 0;
-  border-left-color: #74b9ff;
   border-right: 0;
   margin-right: -20px;
 }
 
+#timestamp{
+    font-size: 4px;
+    font-color: grey;
+    right: 0;
+    border-right: 0;
+    margin-right: -20px;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;

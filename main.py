@@ -286,7 +286,7 @@ def view_room(room_id):
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja
 
-        return render_template('view_room.html', username =current_user.name,
+        return render_template('new_chat.html', username =current_user.name,
                                participant = participant,
                                room = room, room_members = room_members, messages = messages)
 
