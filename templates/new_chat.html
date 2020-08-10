@@ -1641,33 +1641,20 @@
 
                                         <div class="user-chat-content">
 
-                                            <div class="ctext-wrap">
-                                                <div class="ctext-wrap-content">
-                                                    <p class="mb-0">
-                                                        Yeah everything is fine
-                                                    </p>
-                                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p>
-                                                </div>
-                                                <div class="dropdown align-self-start">
-                                                    <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        <i class="ri-more-2-fill"></i>
-                                                    </a>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#">Copy <i class="ri-file-copy-line float-right text-muted"></i></a>
-                                                        <a class="dropdown-item" href="#">Save <i class="ri-save-line float-right text-muted"></i></a>
-                                                        <a class="dropdown-item" href="#">Forward <i class="ri-chat-forward-line float-right text-muted"></i></a>
-                                                        <a class="dropdown-item" href="#">Delete <i class="ri-delete-bin-line float-right text-muted"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            {% for message in messages %}
 
                                             <div class="ctext-wrap">
                                                 <div class="ctext-wrap-content">
                                                     <p class="mb-0">
-                                                        & Next meeting tomorrow 10.00AM will this also stretch Next meeting tomorrow 10.00AM will this also stretch
+
+                                                            {{message.text}}
                                                     </p>
+
                                                     <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p>
+
                                                 </div>
+
+
                                                 <div class="dropdown align-self-start">
                                                     <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="ri-more-2-fill"></i>
@@ -1679,7 +1666,11 @@
                                                         <a class="dropdown-item" href="#">Delete <i class="ri-delete-bin-line float-right text-muted"></i></a>
                                                     </div>
                                                 </div>
+
                                             </div>
+
+                                            {% endfor %}
+
 
                                             <div class="conversation-name">Doris Brown</div>
                                         </div>
@@ -1771,12 +1762,15 @@
                         <!-- end chat conversation end -->
     
                         <!-- start chat input section -->
+                        <form id="message_input_form">
                         <div class="p-3 p-lg-4 border-top mb-0">
                             <div class="row no-gutters">
                                 <div class="col">
-                                    <div>
-                                        <input type="text" class="form-control form-control-lg bg-light border-light" placeholder="Enter Message...">
-                                    </div>
+
+                                        <input type="text"  id="message_input"
+                                               class="form-control form-control-lg bg-light border-light"
+                                               placeholder="Enter Message...">
+
                                 </div>
                                 <div class="col-auto">
                                     <div class="chat-input-links ml-md-2">
@@ -1795,6 +1789,8 @@
                                                 <button type="submit" class="btn btn-primary font-size-16 btn-lg chat-send waves-effect waves-light">
                                                     <i class="ri-send-plane-2-fill"></i>
                                                 </button>
+
+                                                  </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -1802,6 +1798,7 @@
                                 </div>
                             </div>
                         </div>
+                        </form>
                         <!-- end chat input section -->
                     </div>
                     <!-- end chat conversation section -->
@@ -2074,4 +2071,63 @@
         <script src="assets/js/app.js"></script>
 
     </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    const socket = io.connect("http://127.0.0.1:5000");
+
+    socket.on('connect', function () {
+        socket.emit('join_room', {
+            username: "{{ username }}",
+            room: "{{ room._id }}"
+        });
+
+        let message_input = document.getElementById('message_input');
+
+        document.getElementById('message_input_form').onsubmit = function (e) {
+            e.preventDefault();
+            let message = message_input.value.trim();
+            if (message.length) {
+                socket.emit('send_message', {
+                    username: "{{ username }}",
+                    room: "{{ room._id }}",
+                    message: message
+                })
+            }
+            message_input.value = '';
+            message_input.focus();
+        }
+    });
+
+    window.onbeforeunload = function () {
+        socket.emit('leave_room', {
+            username: "{{ username }}",
+            room: "{{ room._id }}"
+        })
+    };
+
+    socket.on('receive_message', function (data) {
+        console.log(data);
+        const newNode = document.createElement('div');
+        newNode.innerHTML = `<b>${data.username}&nbsp; [${data.created_at}]:&nbsp;</b> ${data.message}`;
+        document.getElementById('messages').appendChild(newNode);
+    });
+
+    socket.on('join_room_announcement', function (data) {
+        console.log(data);
+        if (data.username !== "{{ username }}") {
+            const newNode = document.createElement('div');
+            newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
+            document.getElementById('messages').appendChild(newNode);
+        }
+    });
+
+    socket.on('leave_room_announcement', function (data) {
+        console.log(data);
+        const newNode = document.createElement('div');
+        newNode.innerHTML = `<b>${data.username}</b> has left the room`;
+        document.getElementById('messages').appendChild(newNode);
+    });
+</script>
+
 </html>
