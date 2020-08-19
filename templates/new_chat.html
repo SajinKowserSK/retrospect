@@ -1641,7 +1641,7 @@
 
                                         <div class="user-chat-content">
 
-                                            <div id="messages-participant">
+<!--                                            <div id="messages-participant">-->
                                             {% for message in participantMsgs %}
 
                                             <div class="ctext-wrap">
@@ -1654,7 +1654,7 @@
                                                 </div>
                                             </div>
                                             {% endfor %}
-                                            </div>
+<!--                                            </div>-->
 
                                         </div>
 
@@ -1671,7 +1671,7 @@
 
                                         <div class="user-chat-content">
 
-                                            <div id="messages">
+<!--                                            <div id="messages">-->
 
 
                                             <div class="ctext-wrap">
@@ -1687,12 +1687,18 @@
 
 
                                           </div>
-                                        </div>
-
+<!--                                        </div>-->
                                     </div>
                                 </li>
 
                                   {% endfor %}
+                                <div id="messages"></div>
+
+                                <br>
+
+                                <div id = "messages-participant"> </div>
+
+                                <br>
                             </ul>
 
 
@@ -2058,8 +2064,8 @@
         }
 
         else{
-           newNode.innerHTML = `<div class="ctext-wrap-content"> <p class="mb-0"> ${data.message}</p>
-           <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:02</span></p> </div> <br>`;
+           newNode.innerHTML = `<li class="right"><div class="ctext-wrap-content"> <p class="mb-0"> ${data.message}</p>
+           <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:02</span></p> </div> </li> <br>`;
            document.getElementById('messages-participant').appendChild(newNode);
         }
 
