@@ -20,6 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/new_chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/new_chat.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -155,10 +157,10 @@
       <screen x="1920" y="-621" width="1920" height="1040" />
     </state>
     <state x="2608" y="-207" key="git4idea.ui.GitResetDialog/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1596956768182" />
-    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup" timestamp="1596911508114">
+    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup" timestamp="1597815065915">
       <screen x="1920" y="-621" width="1920" height="1040" />
     </state>
-    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1596911508114" />
+    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1597815065915" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -266,6 +266,19 @@ def view_room(room_id):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
 
+
+
+        participantMsgs = []
+        userMsgs = []
+
+        # later must go back and change sender to URL in case ppl have same names
+        for message in messages:
+            if message["sender"] != current_user.name:
+                participantMsgs.append(message)
+
+            else:
+                userMsgs.append(message)
+
         for x in range(0, len(room_members)):
             curr_url = room_members[x]
 
@@ -287,6 +300,7 @@ def view_room(room_id):
         # then pass as variable to jinja
 
         return render_template('new_chat.html', username =current_user.name,
+                               userMsgs=userMsgs, participantMsgs = participantMsgs,
                                participant = participant,
                                room = room, room_members = room_members, messages = messages)
 
