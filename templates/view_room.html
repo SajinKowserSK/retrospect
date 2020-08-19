@@ -7,10 +7,12 @@
 <body>
 <h1>{{ participant.name }}</h1>
 
+<div class = "container">
 <div id="messages">
     {% for message in messages %}
     <div><b>{{message.sender}}&nbsp; [{{message.created_at}}]:&nbsp;</b> <p id="messageB"> {{message.text}} </p> </div>
     {% endfor %}
+</div>
 </div>
 
 <form id="message_input_form">
@@ -92,5 +94,16 @@
     #messageB{
         color: red;
     }
+
+    .container{
+    width: 200px;
+    height: 200px;
+    padding:10px;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    }
+
+
 </style>
 </html>
