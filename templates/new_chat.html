@@ -1583,7 +1583,7 @@
                                             <img src="assets/images/users/avatar-4.jpg" class="rounded-circle avatar-xs" alt="">
                                         </div>
                                         <div class="media-body overflow-hidden">
-                                            <h5 class="font-size-16 mb-0 text-truncate"><a href="#" class="text-reset user-profile-show">Sajin Kowser</a></h5>
+                                            <h5 class="font-size-16 mb-0 text-truncate"><a href="#" class="text-reset user-profile-show">{{participant.name}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -1696,9 +1696,6 @@
 
                                 <br>
 
-                                <div id = "messages-participant"> </div>
-
-                                <br>
                             </ul>
 
 
@@ -2060,15 +2057,16 @@
             newNode.innerHTML = `<li class="right"> <div class="conversation-list"> <div class="chat-avatar"> <img src="assets/images/users/avatar-1.jpg" alt=""> </div>
 <div class="user-chat-content"> <div id="messages"> <div class="ctext-wrap"> <div class="ctext-wrap-content"> <p class="mb-0"> ${data.message} </p> <p class="chat-time mb-0">
 <i class="ri-time-line align-middle"></i> <span class="align-middle">10:06</span></p> </div> </div> </div> </div> </div> </li> <br>`;
-            document.getElementById('messages').appendChild(newNode);
+
         }
 
         else{
-           newNode.innerHTML = `<li class="right"><div class="ctext-wrap-content"> <p class="mb-0"> ${data.message}</p>
-           <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:02</span></p> </div> </li> <br>`;
-           document.getElementById('messages-participant').appendChild(newNode);
+           newNode.innerHTML = `<li> <div class="conversation-list"> <div class="chat-avatar"> <img src="assets/images/users/avatar-4.jpg" alt=""> </div>
+<div class="user-chat-content"> <div class="ctext-wrap"> <div class="ctext-wrap-content"> <p class="mb-0"> </p>${data.message} <p class="chat-time mb-0">
+<i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p> </div> </div> </div> </div> </li> <br>`;
         }
 
+        document.getElementById('messages').appendChild(newNode);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 
