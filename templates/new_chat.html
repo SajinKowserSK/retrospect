@@ -1630,8 +1630,13 @@
                         <!-- end chat user head -->
 
                         <!-- start chat conversation -->
+
                         <div id="msgs" class="chat-conversation p-3 p-lg-4" data-simplebar="init">
                             <ul class="list-unstyled mb-0">
+                                {% for message in messages %}
+
+                                {% if message.sender != current_user.name %}
+
 
                                 <li>
                                     <div class="conversation-list">
@@ -1642,7 +1647,7 @@
                                         <div class="user-chat-content">
 
 <!--                                            <div id="messages-participant">-->
-                                            {% for message in participantMsgs %}
+
 
                                             <div class="ctext-wrap">
                                                 <div class="ctext-wrap-content">
@@ -1653,7 +1658,7 @@
                                                     <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p>
                                                 </div>
                                             </div>
-                                            {% endfor %}
+
 <!--                                            </div>-->
 
                                         </div>
@@ -1661,7 +1666,7 @@
                                     </div>
                                 </li>
 
-                                {% for message in userMsgs %}
+                                {% else %}
 
                                 <li class="right">
                                     <div class="conversation-list">
@@ -1690,8 +1695,9 @@
 <!--                                        </div>-->
                                     </div>
                                 </li>
+                                {% endif %}
+                                {% endfor %}
 
-                                  {% endfor %}
                                 <div id="messages"></div>
 
                                 <br>
@@ -1700,6 +1706,7 @@
 
 
                         </div>
+
                         <!-- end chat conversation end -->
 
 
