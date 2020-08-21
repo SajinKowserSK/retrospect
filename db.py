@@ -101,8 +101,8 @@ def get_messages(room_id, page = 0):
 
     messages= list(
         messages_collection.find({'room_id': room_id}).sort('_id', DESCENDING).limit(MESSAGE_FETCH_LIMIT).skip(offset))
-    for message in messages:
-        message['created_at'] = message['created_at'].strftime("%d %b, %H: %M")
+    # for message in messages:
+    #     message['created_at'] = message['created_at'].strftime("%d %b, %H: %M")
 
     return messages[::-1]
 
@@ -166,15 +166,24 @@ def updateURL(email, new):
 def getRoomLog(roomID):
     room = get_room(roomID)
 
-    if room['roomLog'] is None:
+    if room is None:
         return None
 
     return room['roomLog']
 
+def getUserLastJoin(roomID, userURL):
+    roomLog = getRoomLog(roomID)[0]
+    userActivity = roomLog[userURL]
+    return userActivity["lastJoined"]
+
+def getUserLastLeft(roomID, userURL):
+    roomLog = getRoomLog(roomID)[0]
+    userActivity = roomLog[userURL]
+    return userActivity["lastLeft"]
+
 def updateLastJoin(roomID, userURL):
 
     updated = []
-
     roomLog = getRoomLog(roomID)[0]
     userActivity = roomLog[userURL]
     userActivity["lastJoined"] = datetime.now()
@@ -184,3 +193,33 @@ def updateLastJoin(roomID, userURL):
 
     rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"roomLog": updated }})
 
+def updateLastLeft(roomID, userURL):
+    updated = []
+    roomLog = getRoomLog(roomID)[0]
+    userActivity = roomLog[userURL]
+    userActivity["lastLeft"] = datetime.now()
+    roomLog[userURL] = userActivity
+    updated.append(roomLog)
+
+    rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"roomLog": updated}})
+
+def check_unread_messages(roomID, userURL):
+    # get list of messages
+    # reverse sort the list
+    # for message in messages
+    # if message['sender'] != userURL and message['created_at'] > getUserLastLeft:
+    # then updateUserRead
+    # else do nothing
+    pass
+
+# var = get_messages("5f3f703d49292b3bdfd31166")
+# firstMsg = var[0]
+# now = datetime.now()
+# print(firstMsg["created_at"])
+# print(now-firstMsg['created_at'])
+# print(firstMsg['created_at']-now)
+#
+# # if created before now
+# if firstMsg['created_at'] < now:
+#     print("true")
+#

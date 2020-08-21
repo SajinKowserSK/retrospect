@@ -38,8 +38,6 @@ def handle_send_message_event(data):
 
 
 
-# everytime on join_room -> find the room id, go to the room_dict field then query by ["username"]["lastJoined"] = datetime.now()
-# same thing for leave_room above
 
 # on leave_room event -> calculate if read. -> check if last message that was sent (not by user)
 # was sent at a time after the user has left the room, mutate "read" key in dict accordingly
@@ -77,11 +75,9 @@ def handle_leave_room_event(data):
     roomLog = getRoomLog(data['room'])
 
     if roomLog is not None:
-        roomLog = roomLog[0]
-        userActivity = roomLog[data["userURL"]]
-        userActivity["lastLeft"] = datetime.now()
+        updateLastLeft(data['room'], data['userURL'])
 
-    #            socketio.emit('leave_room_announcement', data, room=data['room'])
+    # socketio.emit('leave_room_announcement', data, room=data['room'])
 
     # iterate through list of room ids for user and then  participant
     # change the isPresent and is Read

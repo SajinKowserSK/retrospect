@@ -10,4 +10,3 @@ list1 = "https://www.linkedin.com/in/craigfmartin/?originalSubdomain=ca, https:/
 list1 = list1.split(",")
 for link in list1:
     print(link)
-
