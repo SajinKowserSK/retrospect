@@ -28,12 +28,15 @@ def handle_send_message_event(data):
 
     data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
     save_message(data['room'], data['message'], data['userURL'], data["username"])
+
+    roomLog = getRoomLog(data['room'])
+
+    if roomLog is not None:
+        updateLastJoin(data['room'], data['userURL'])
+
     socketio.emit('receive_message', data, room=data['room'])
 
 
-# add in a room_dict field in each room in rooms_collection
-# [{"shafin": {"read": False, "lastJoined": datetime, "lastLeft": datetime},
-#  {"sajin": {"read": False, "lastJoined": datetime, "lastLeft": datetime}]
 
 # everytime on join_room -> find the room id, go to the room_dict field then query by ["username"]["lastJoined"] = datetime.now()
 # same thing for leave_room above
@@ -55,11 +58,10 @@ def handle_join_room_event(data):
     app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
     join_room(data['room'])
 
-    var = getRoomLog(data['room'])
-    if var is not None:
-        print(var)
+    roomLog = getRoomLog(data['room'])
 
-
+    if roomLog is not None:
+        updateLastJoin(data['room'], data['userURL'])
 
     # iterate through list of room ids for user and then  participant
     # change the isPresent and is Read
@@ -71,6 +73,14 @@ def handle_join_room_event(data):
 def handle_leave_room_event(data):
     app.logger.info("{} has left the room {}".format(data['username'], data['room']))
     leave_room(data['room'])
+
+    roomLog = getRoomLog(data['room'])
+
+    if roomLog is not None:
+        roomLog = roomLog[0]
+        userActivity = roomLog[data["userURL"]]
+        userActivity["lastLeft"] = datetime.now()
+
     #            socketio.emit('leave_room_announcement', data, room=data['room'])
 
     # iterate through list of room ids for user and then  participant

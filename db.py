@@ -171,3 +171,16 @@ def getRoomLog(roomID):
 
     return room['roomLog']
 
+def updateLastJoin(roomID, userURL):
+
+    updated = []
+
+    roomLog = getRoomLog(roomID)[0]
+    userActivity = roomLog[userURL]
+    userActivity["lastJoined"] = datetime.now()
+    userActivity["read"] = True
+    roomLog[userURL] = userActivity
+    updated.append(roomLog)
+
+    rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"roomLog": updated }})
+

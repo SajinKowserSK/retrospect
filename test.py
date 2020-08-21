@@ -1,3 +1,4 @@
+from db import *
 import bcrypt
 pwd = '1'
 salt = bcrypt.gensalt()
@@ -9,3 +10,4 @@ list1 = "https://www.linkedin.com/in/craigfmartin/?originalSubdomain=ca, https:/
 list1 = list1.split(",")
 for link in list1:
     print(link)
+
