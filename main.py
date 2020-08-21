@@ -5,6 +5,7 @@ from flask_login import LoginManager, login_user, login_required, logout_user, c
 from models import User
 import re
 from flask_socketio import SocketIO, join_room, leave_room
+import sys
 
 import bcrypt
 from pymongo.errors import DuplicateKeyError
@@ -24,8 +25,9 @@ def handle_send_message_event(data):
     app.logger.info("{} has sent message to the room {}: {}".format(data['username'],
                                                                     data['room'],
                                                                     data['message']))
+
     data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
-    save_message(data['room'], data['message'], data['username'])
+    save_message(data['room'], data['message'], data['userURL'], data["username"])
     socketio.emit('receive_message', data, room=data['room'])
 
 
@@ -51,7 +53,7 @@ def handle_send_message_event(data):
 def handle_join_room_event(data):
     app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
     join_room(data['room'])
-    print(str(data['room']).upper(), "\n")
+
     # iterate through list of room ids for user and then  participant
     # change the isPresent and is Read
 
@@ -297,7 +299,8 @@ def view_room(room_id):
 
         # later must go back and change sender to URL in case ppl have same names
         for message in messages:
-            if message["sender"] != current_user.name:
+            if message["sender"] != current_user.URL:
+
                 participantMsgs.append(message)
 
             else:
@@ -323,7 +326,8 @@ def view_room(room_id):
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja
 
-        return render_template('new_chat.html', username =current_user.name,
+        return render_template('new_chat.html', username =current_user.name, userURL = current_user.URL,
+                               participantURL = participant.URL,
                                userMsgs=userMsgs, participantMsgs = participantMsgs,
                                participant = participant,
                                room = room, room_members = room_members, messages = messages)

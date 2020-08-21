@@ -23,6 +23,11 @@ room_members_collection = main_db.get_collection("room_members")
 messages_collection = main_db.get_collection("messages")
 
 
+def resetRooms():
+    messages_collection.delete_many({})
+    rooms_collection.delete_many({})
+    print("Done, Reset all rooms and messages")
+
 def check_room_exists(members):
     return rooms_collection.find_one({"members":members})
 
@@ -51,7 +56,7 @@ def is_room_member(room_id, username):
         if username == member:
             return True
 
-    return Falsegig
+    return False
 
 def get_room_members(room_id):
     #return list(room_members_collection.find({'_id.room_id': ObjectId(room_id)}))
@@ -60,9 +65,10 @@ def get_room_members(room_id):
     members = members['members']
     return members
 
-def save_message(room_id, text, sender):
-    messages_collection.insert_one({'room_id':room_id, 'text': text, 'sender': sender, 'created_at': datetime.now()})
-
+def save_message(room_id, text, sender, sender_name):
+    messages_collection.insert_one({'room_id':room_id, 'text': text,
+                                    'sender': sender, 'created_at': datetime.now(),
+                                    'senderName': sender_name})
 MESSAGE_FETCH_LIMIT = 5
 
 def get_messages(room_id, page = 0):

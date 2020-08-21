@@ -1635,7 +1635,7 @@
                             <ul class="list-unstyled mb-0">
                                 {% for message in messages %}
 
-                                {% if message.sender != current_user.name %}
+                                {% if message.sender != current_user.URL %}
 
 
                                 <li>
@@ -1798,6 +1798,7 @@
                 socket.emit('send_message', {
                     username: "{{ username }}",
                     room: "{{ room._id }}",
+                    userURL: "{{ userURL }}",
                     message: message
                 })
             }
