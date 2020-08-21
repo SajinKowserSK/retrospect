@@ -29,11 +29,32 @@ def handle_send_message_event(data):
     socketio.emit('receive_message', data, room=data['room'])
 
 
+# add in a room_dict field in each room in rooms_collection
+# [{"shafin": {"read": False, "lastJoined": datetime, "lastLeft": datetime},
+#  {"sajin": {"read": False, "lastJoined": datetime, "lastLeft": datetime} ]
+
+# everytime on join_room -> find the room id, go to the room_dict field then query by ["username"]["lastJoined"] = datetime.now()
+# same thing for leave_room above
+# on leave_room event -> calculate if read. -> check if last message that was sent (not by user)
+# was sent at a time after the user has left the room, mutate "read" key in dict accordingly
+# on join room event -> automatically make the room "read"
+
+# when a message just starts
+# when a message is sent when a user is in the room
+# when a message is sent when a user is out of the room
+# what happens to the room when a user joins the room
+
+# check if user is in room just -> check if the time when user joined is more recent than the time when user last left if yes then yes in room, otherwise no
+# check if user is
 
 @socketio.on('join_room')
 def handle_join_room_event(data):
     app.logger.info("{} has joined the room {}".format(data['username'], data['room']))
     join_room(data['room'])
+    print(str(data['room']).upper(), "\n")
+    # iterate through list of room ids for user and then  participant
+    # change the isPresent and is Read
+
     #socketio.emit('join_room_announcement', data, room=data['room'])
 
 
@@ -41,7 +62,10 @@ def handle_join_room_event(data):
 def handle_leave_room_event(data):
     app.logger.info("{} has left the room {}".format(data['username'], data['room']))
     leave_room(data['room'])
-    #socketio.emit('leave_room_announcement', data, room=data['room'])
+    #            socketio.emit('leave_room_announcement', data, room=data['room'])
+
+    # iterate through list of room ids for user and then  participant
+    # change the isPresent and is Read
 
 @login_manager.user_loader
 def load_user(email):
