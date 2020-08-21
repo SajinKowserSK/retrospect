@@ -32,9 +32,32 @@ def check_room_exists(members):
     return rooms_collection.find_one({"members":members})
 
 def save_room(room_name, created_by, members):
+    # [ {
+    #    "shafin": {"read": False, "lastJoined": datetime, "lastLeft": datetime},
+    #    "sajin": {"read": False, "lastJoined": datetime, "lastLeft": datetime}
+    #
+    #    } ]
+
+    roomLog = [{}]
+
+# come back
+
+    for member in members:
+        activity = roomLog[0]
+        # input key for member
+        activity[member] = {}
+
+        # create keys for members dict
+        activity[member]["read"] = False
+        activity[member]["lastJoined"] = None
+        activity[member]["lastLeft"] = None
+
     room_id = rooms_collection.insert_one(
-        {'name': room_name, 'created_by': created_by, 'members': members, 'created_at': datetime.now()}).inserted_id
+        {'name': room_name, 'created_by': created_by, 'members': members,
+         'created_at': datetime.now(), "roomLog": roomLog}).inserted_id
+
     return room_id
+
 
 def add_room_member(room_id, room_name, username, added_by, is_room_admin=False):
     room_members_collection.insert_one(
@@ -138,3 +161,13 @@ def updateURL(email, new):
 
     if foundUser and not foundURL:
         mentors_collection.update_one({'email': email}, {'$set': {'url': new}})
+
+
+def getRoomLog(roomID):
+    room = get_room(roomID)
+
+    if room['roomLog'] is None:
+        return None
+
+    return room['roomLog']
+
