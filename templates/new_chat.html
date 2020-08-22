@@ -387,9 +387,10 @@
                             <div class="px-2">
                                 <h5 class="mb-3 px-3 font-size-16">Recent</h5>
 
-                                <div class="chat-message-list" data-simplebar>
+                                <div id="msgList" class="chat-message-list" data-simplebar>
 
                                     <ul class="list-unstyled chat-list chat-user-list">
+
                                         <li>
                                             <a href="#">
                                                 <div class="media">
@@ -1858,6 +1859,12 @@
 
 
 #msgs{
+    padding:10px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+#msgList{
     padding:10px;
     overflow: hidden;
     overflow-y: scroll;

@@ -126,7 +126,6 @@ def login():
             user.authenticated = True
             login_user(user)
             session['logged_in'] = True
-            print("logged in user")
             return redirect(url_for('profileRedirect'))
 
         elif response.status_code == 404:
@@ -298,6 +297,7 @@ def messages(mentor):
 @login_required
 def view_room(room_id):
     room = get_room(room_id)
+    update_room_status_for_user(current_user.URL)
 
     if room and is_room_member(room_id, current_user.URL):
 

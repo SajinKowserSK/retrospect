@@ -220,7 +220,7 @@ def check_unread_messages(roomID, userURL):
             userRead(roomID, userURL, False)
 
 
-def find_rooms_for_user(userURL):
+def update_room_status_for_user(userURL):
     # need to find all the rooms where userURL is a member
     user_rooms = list(rooms_collection.find({"members": { "$all": [userURL]}}))
     for room in user_rooms:
@@ -228,5 +228,23 @@ def find_rooms_for_user(userURL):
 
 
 
+# need to get list of all rooms user is in
+# all room documents need to have a last interacted field
+# sort the rooms by datetime (most recent to furthest)
+# pass that list of rooms in chat list
+# if room.roomLog[0][current_user.URL]['read']
+# bold
 
-find_rooms_for_user("sajinkowsersk")
+# jinja syntax
+# {%for elem in room.roomLog%}
+# {% if elem[current_user.URL]["read"] %}
+# bold
+# {% endif %}
+# {% endfor %}
+
+
+# # To sort the list in place...
+# ut.sort(key=lambda x: x.count, reverse=True)
+#
+# # To return a new list, use the sorted() built-in function...
+# newlist = sorted(ut, key=lambda x: x.count, reverse=True)
