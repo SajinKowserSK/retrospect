@@ -37,8 +37,6 @@ def handle_send_message_event(data):
     socketio.emit('receive_message', data, room=data['room'])
 
 
-
-
 # on leave_room event -> calculate if read. -> check if last message that was sent (not by user)
 # was sent at a time after the user has left the room, mutate "read" key in dict accordingly
 # on join room event -> automatically make the room "read"
@@ -302,9 +300,9 @@ def view_room(room_id):
     room = get_room(room_id)
 
     if room and is_room_member(room_id, current_user.URL):
+
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
-
 
 
         participantMsgs = []

@@ -203,23 +203,30 @@ def updateLastLeft(roomID, userURL):
 
     rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"roomLog": updated}})
 
-def check_unread_messages(roomID, userURL):
-    # get list of messages
-    # reverse sort the list
-    # for message in messages
-    # if message['sender'] != userURL and message['created_at'] > getUserLastLeft:
-    # then updateUserRead
-    # else do nothing
-    pass
+def userRead(roomID, userURL, bool):
+    updated = []
+    roomLog = getRoomLog(roomID)[0]
+    userActivity = roomLog[userURL]
+    userActivity["read"] = bool
+    roomLog[userURL] = userActivity
+    updated.append(roomLog)
 
-# var = get_messages("5f3f703d49292b3bdfd31166")
-# firstMsg = var[0]
-# now = datetime.now()
-# print(firstMsg["created_at"])
-# print(now-firstMsg['created_at'])
-# print(firstMsg['created_at']-now)
-#
-# # if created before now
-# if firstMsg['created_at'] < now:
-#     print("true")
-#
+    rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"roomLog": updated}})
+
+def check_unread_messages(roomID, userURL):
+    messages = get_messages(roomID)[::-1]
+    for message in messages:
+        if message['sender'] != userURL and message['created_at'] > getUserLastLeft(roomID, userURL):
+            userRead(roomID, userURL, False)
+
+
+def find_rooms_for_user(userURL):
+    # need to find all the rooms where userURL is a member
+    user_rooms = list(rooms_collection.find({"members": { "$all": [userURL]}}))
+    for room in user_rooms:
+        check_unread_messages(str(room['_id']), userURL)
+
+
+
+
+find_rooms_for_user("sajinkowsersk")
