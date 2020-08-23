@@ -26,7 +26,7 @@ def handle_send_message_event(data):
                                                                     data['room'],
                                                                     data['message']))
 
-    data['created_at'] = datetime.now().strftime("%d %b, %H:%M")
+    data['created_at'] = format_time(datetime.now())
     save_message(data['room'], data['message'], data['userURL'], data["username"])
 
     roomLog = getRoomLog(data['room'])
@@ -330,7 +330,7 @@ def view_room(room_id):
                                participant = participant, recent_msgs = recent_msgs,
                                room = room, room_members = room_members, messages = messages,
                                get_name = get_name, get_most_recent_message = get_most_recent_message,
-                               get_image = get_image)
+                               get_image = get_image, format_time = format_time)
 
     else:
         return 'Room not found', 404

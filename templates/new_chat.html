@@ -410,7 +410,7 @@
                                                                 <h5 class="text-truncate font-size-15 mb-1">{{ get_name(member) }} </h5>
                                                                 <p class="chat-user-message text-truncate mb-0">{{ get_most_recent_message(room._id) }}</p>
                                                             </div>
-                                                            <div class="font-size-11">05 min</div>
+                                                            <div class="font-size-11">{{ format_time(room.latest) }}</div>
                                                         </div>
                                                     </a>
                                                 </li>
@@ -1669,7 +1669,7 @@
 
                                                             {{message.text}}
                                                     </p>
-                                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p>
+                                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">{{ format_time(message.created_at) }}</span></p>
                                                 </div>
                                             </div>
 
@@ -1700,7 +1700,7 @@
                                                         {{message.text}}
 
                                                     </p>
-                                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">10:06</span></p>
+                                                    <p class="chat-time mb-0"><i class="ri-time-line align-middle"></i> <span class="align-middle">{{ format_time(message.created_at) }}</span></p>
                                                 </div>
                                             </div>
 
@@ -1834,17 +1834,18 @@
         console.log(data);
         const newNode = document.createElement('div');
 
+
         if (data.username === "{{ username }}") {
             newNode.innerHTML = `<li class="right"> <div class="conversation-list"> <div class="chat-avatar"> <img src="assets/images/users/avatar-1.jpg" alt=""> </div>
 <div class="user-chat-content"> <div id="messages"> <div class="ctext-wrap"> <div class="ctext-wrap-content"> <p class="mb-0"> ${data.message} </p> <p class="chat-time mb-0">
-<i class="ri-time-line align-middle"></i> <span class="align-middle">10:06</span></p> </div> </div> </div> </div> </div> </li> <br>`;
+<i class="ri-time-line align-middle"></i> <span class="align-middle">${data.created_at}</span></p> </div> </div> </div> </div> </div> </li> <br>`;
 
         }
 
         else{
            newNode.innerHTML = `<li> <div class="conversation-list"> <div class="chat-avatar"> <img src="assets/images/users/avatar-4.jpg" alt=""> </div>
 <div class="user-chat-content"> <div class="ctext-wrap"> <div class="ctext-wrap-content"> <p class="mb-0"> </p>${data.message} <p class="chat-time mb-0">
-<i class="ri-time-line align-middle"></i> <span class="align-middle">10:05</span></p> </div> </div> </div> </div> </li> <br>`;
+<i class="ri-time-line align-middle"></i> <span class="align-middle">${data.created_at}</span></p> </div> </div> </div> </div> </li> <br>`;
         }
 
         document.getElementById('messages').appendChild(newNode);

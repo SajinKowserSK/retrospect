@@ -215,8 +215,11 @@ def userRead(roomID, userURL, bool):
 
 def check_unread_messages(roomID, userURL):
     messages = get_messages(roomID)[::-1]
+    print(messages)
+
     for message in messages:
-        if message['sender'] != userURL and message['created_at'] > getUserLastLeft(roomID, userURL):
+        lastLeft = getUserLastLeft(roomID, userURL)
+        if message['sender'] != userURL and lastLeft is None or lastLeft is not None and lastLeft < message['created_at']:
             userRead(roomID, userURL, False)
 
 
@@ -242,8 +245,17 @@ def get_image(userURL):
 
 def get_most_recent_message(roomID):
     msgs = get_messages(str(roomID))
-    msgs = msgs[-1]
-    return msgs['text']
+
+    if msgs is not None and len(msgs) > 0:
+
+        msgs = msgs[-1]
+        return msgs['text']
+
+    else:
+        return "Start the conversation!"
+
+def format_time(time):
+    return time.strftime("%I:%M %p")
 
 # pass that list of rooms in chat list
 # if room.roomLog[0][current_user.URL]['read']
