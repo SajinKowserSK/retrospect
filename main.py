@@ -33,21 +33,10 @@ def handle_send_message_event(data):
 
     if roomLog is not None:
         updateLastJoin(data['room'], data['userURL'])
+        update_latest(data['room'])
 
     socketio.emit('receive_message', data, room=data['room'])
 
-
-# on leave_room event -> calculate if read. -> check if last message that was sent (not by user)
-# was sent at a time after the user has left the room, mutate "read" key in dict accordingly
-# on join room event -> automatically make the room "read"
-
-# when a message just starts
-# when a message is sent when a user is in the room
-# when a message is sent when a user is out of the room
-# what happens to the room when a user joins the room
-
-# check if user is in room just -> check if the time when user joined is more recent than the time when user last left if yes then yes in room, otherwise no
-# check if user is
 
 @socketio.on('join_room')
 def handle_join_room_event(data):
@@ -93,9 +82,6 @@ def load_user(email):
 
 @app.route('/',methods=['GET'])
 def home():
-    if current_user.is_authenticated:
-        print("user is already logged in")
-
     return render_template("index.html")
   
 
@@ -145,7 +131,6 @@ def login():
 def logout():
     logout_user()
     session['logged_in'] = False
-    print('logged out user')
     return redirect("/")
 
 
@@ -222,8 +207,6 @@ def editProfile():
 
             if mentors_collection.find_one({'url':request.form['URL']}):
 
-                print(request.form['URL'])
-                print(mentors_collection.find_one({'url':request.form['URL']}))
                 message = "That URL is already in use. Please choose another."
                 return render_template("editProfile.html", message=message)
 
@@ -287,7 +270,7 @@ def messages(mentor):
         roomID = check_room_exists(members)['_id']
 
     else:
-         roomID = save_room(roomName, current_user.URL, members)
+         roomID = save_room(roomName, current_user.URL, members, datetime.now())
 
     usernames = [mentorAccount['url']]
     return redirect(url_for('view_room', room_id = roomID))
@@ -302,6 +285,7 @@ def view_room(room_id):
     if room and is_room_member(room_id, current_user.URL):
 
         room_members = get_room_members(room_id)
+
         messages = get_messages(room_id)
 
 
@@ -333,6 +317,7 @@ def view_room(room_id):
                     newDict[key] = "None"
 
                 participant = User(newDict)
+
 
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja

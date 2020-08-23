@@ -31,7 +31,7 @@ def resetRooms():
 def check_room_exists(members):
     return rooms_collection.find_one({"members":members})
 
-def save_room(room_name, created_by, members):
+def save_room(room_name, created_by, members, latest):
     # [ {
     #    "shafin": {"read": False, "lastJoined": datetime, "lastLeft": datetime},
     #    "sajin": {"read": False, "lastJoined": datetime, "lastLeft": datetime}
@@ -54,7 +54,7 @@ def save_room(room_name, created_by, members):
 
     room_id = rooms_collection.insert_one(
         {'name': room_name, 'created_by': created_by, 'members': members,
-         'created_at': datetime.now(), "roomLog": roomLog}).inserted_id
+         'created_at': datetime.now(), 'latest':latest, "roomLog": roomLog}).inserted_id
 
     return room_id
 
@@ -226,6 +226,14 @@ def update_room_status_for_user(userURL):
     for room in user_rooms:
         check_unread_messages(str(room['_id']), userURL)
 
+def update_latest(roomID):
+    rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"latest": datetime.now()}})
+
+def get_recent_messages(userURL):
+    user_rooms = list(rooms_collection.find({"members": {"$all": [userURL]}}))
+    sorted_user_rooms = sorted(user_rooms, key=lambda x: x['latest'], reverse=True)
+    return sorted_user_rooms
+
 
 
 # need to get list of all rooms user is in
@@ -248,3 +256,4 @@ def update_room_status_for_user(userURL):
 #
 # # To return a new list, use the sorted() built-in function...
 # newlist = sorted(ut, key=lambda x: x.count, reverse=True)
+
