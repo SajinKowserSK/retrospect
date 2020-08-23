@@ -322,11 +322,15 @@ def view_room(room_id):
         # find other_participant object in room_members list (whether it be by name, url, etc.)
         # then pass as variable to jinja
 
+        recent_msgs = get_recent_messages(current_user.URL)
+
         return render_template('new_chat.html', username =current_user.name, userURL = current_user.URL,
                                participantURL = participant.URL,
                                userMsgs=userMsgs, participantMsgs = participantMsgs,
-                               participant = participant,
-                               room = room, room_members = room_members, messages = messages)
+                               participant = participant, recent_msgs = recent_msgs,
+                               room = room, room_members = room_members, messages = messages,
+                               get_name = get_name, get_most_recent_message = get_most_recent_message,
+                               get_image = get_image)
 
     else:
         return 'Room not found', 404

@@ -391,23 +391,36 @@
 
                                     <ul class="list-unstyled chat-list chat-user-list">
 
-                                        <li>
-                                            <a href="#">
-                                                <div class="media">
+                                        {% for room in recent_msgs %}
 
-                                                    <div class="chat-user-img online align-self-center mr-3">
-                                                        <img src="../static/assets/images/users/avatar-2.jpg" class="rounded-circle avatar-xs" alt="">
-                                                        <span class="user-status"></span>
-                                                    </div>
+                                            {% for member in room.members %}
+                                                {% if member != current_user.URL %}
 
-                                                    <div class="media-body overflow-hidden">
-                                                        <h5 class="text-truncate font-size-15 mb-1">Patrick Hendricks</h5>
-                                                        <p class="chat-user-message text-truncate mb-0">Hey! there I'm available</p>
-                                                    </div>
-                                                    <div class="font-size-11">05 min</div>
-                                                </div>
-                                            </a>
-                                        </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <div class="media">
+
+                                                            <div class="chat-user-img online align-self-center mr-3">
+                                                                <img src= {{ get_image(member)  }} class="rounded-circle avatar-xs" alt="">
+                                                                <span class="user-status"></span>
+                                                            </div>
+
+                                                            <div class="media-body overflow-hidden">
+                                                                <h5 class="text-truncate font-size-15 mb-1">{{ get_name(member) }} </h5>
+                                                                <p class="chat-user-message text-truncate mb-0">{{ get_most_recent_message(room._id) }}</p>
+                                                            </div>
+                                                            <div class="font-size-11">05 min</div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+
+
+                                                {% endif %}
+
+                                            {% endfor %}
+
+                                        {% endfor %}
 
                                     </ul>
                                 </div>

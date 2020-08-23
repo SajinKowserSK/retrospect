@@ -234,11 +234,17 @@ def get_recent_messages(userURL):
     sorted_user_rooms = sorted(user_rooms, key=lambda x: x['latest'], reverse=True)
     return sorted_user_rooms
 
+def get_name(userURL):
+    return mentors_collection.find_one({"url": userURL})['name']
 
+def get_image(userURL):
+    return mentors_collection.find_one({"url": userURL})['image']
 
-# need to get list of all rooms user is in
-# all room documents need to have a last interacted field
-# sort the rooms by datetime (most recent to furthest)
+def get_most_recent_message(roomID):
+    msgs = get_messages(str(roomID))
+    msgs = msgs[-1]
+    return msgs['text']
+
 # pass that list of rooms in chat list
 # if room.roomLog[0][current_user.URL]['read']
 # bold
