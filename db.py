@@ -215,8 +215,6 @@ def userRead(roomID, userURL, bool):
 
 def check_unread_messages(roomID, userURL):
     messages = get_messages(roomID)[::-1]
-    print(messages)
-
     for message in messages:
         lastLeft = getUserLastLeft(roomID, userURL)
         if message['sender'] != userURL and lastLeft is None or lastLeft is not None and lastLeft < message['created_at']:
