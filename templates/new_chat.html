@@ -403,12 +403,22 @@
 
                                                             <div class="chat-user-img online align-self-center mr-3">
                                                                 <img src= {{ get_image(member)  }} class="rounded-circle avatar-xs" alt="">
-                                                                <span class="user-status"></span>
+
                                                             </div>
 
                                                             <div class="media-body overflow-hidden">
-                                                                <h5 class="text-truncate font-size-15 mb-1">{{ get_name(member) }} </h5>
-                                                                <p class="chat-user-message text-truncate mb-0">{{ get_most_recent_message(room._id) }}</p>
+
+
+                                                                {% if is_unread(room._id, current_user.URL) == true %}
+                                                                    <h5 id = "unread_convo" class="text-truncate font-size-15 mb-1">{{ get_name(member) }} </h5>
+                                                                    <strong id="unread_msg" class="chat-user-message text-truncate mb-0">{{ get_most_recent_message(room._id) }}</strong>
+
+
+                                                                {% else %}
+                                                                    <h5 class="text-truncate font-size-15 mb-1">{{ get_name(member) }} </h5>
+                                                                    <p class="chat-user-message text-truncate mb-0">{{ get_most_recent_message(room._id) }}</p>
+
+                                                                {% endif %}
                                                             </div>
                                                             <div class="font-size-11">{{ format_time(room.latest) }}</div>
                                                         </div>
@@ -1882,6 +1892,18 @@
     padding:10px;
     overflow: hidden;
     overflow-y: scroll;
+}
+
+#unread_msg{
+    color: black;
+    font-weight: 900;
+
+}
+
+#unread_convo{
+    color: black;
+    font-weight: 900;
+
 }
 </style>
 

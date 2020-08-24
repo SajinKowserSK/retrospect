@@ -35,6 +35,8 @@ def handle_send_message_event(data):
         updateLastJoin(data['room'], data['userURL'])
         update_latest(data['room'])
 
+    # call method to check if other user received it or it is beyond their last left
+    check_participant_received(data['room'], data['userURL'])
     socketio.emit('receive_message', data, room=data['room'])
 
 
@@ -330,7 +332,7 @@ def view_room(room_id):
                                participant = participant, recent_msgs = recent_msgs,
                                room = room, room_members = room_members, messages = messages,
                                get_name = get_name, get_most_recent_message = get_most_recent_message,
-                               get_image = get_image, format_time = format_time)
+                               get_image = get_image, format_time = format_time, is_unread = is_unread)
 
     else:
         return 'Room not found', 404

@@ -227,6 +227,15 @@ def update_room_status_for_user(userURL):
     for room in user_rooms:
         check_unread_messages(str(room['_id']), userURL)
 
+def check_participant_received(room_id, user_url):
+    curr_room = rooms_collection.find_one({'_id': ObjectId(room_id)})['members']
+    participant_url = user_url
+    for member in curr_room:
+        if member != user_url:
+            participant_url = member
+
+    check_unread_messages(room_id, participant_url)
+
 def update_latest(roomID):
     rooms_collection.update_one({'_id': ObjectId(roomID)}, {'$set': {"latest": datetime.now()}})
 
@@ -255,21 +264,15 @@ def get_most_recent_message(roomID):
 def format_time(time):
     return time.strftime("%I:%M %p")
 
-# pass that list of rooms in chat list
-# if room.roomLog[0][current_user.URL]['read']
-# bold
 
-# jinja syntax
-# {%for elem in room.roomLog%}
-# {% if elem[current_user.URL]["read"] %}
-# bold
-# {% endif %}
-# {% endfor %}
+def is_unread(room_id, user_url):
+    # get room log for room_id
+    # check if room_log[0][user_url]['read'] == True, if yes return True else return False
+    room_id = str(room_id)
+    curr_room = rooms_collection.find_one({'_id': ObjectId(room_id)})['roomLog'][0]
+    if curr_room and curr_room[user_url]['read'] != True:
+        return True
 
+    return False
 
-# # To sort the list in place...
-# ut.sort(key=lambda x: x.count, reverse=True)
-#
-# # To return a new list, use the sorted() built-in function...
-# newlist = sorted(ut, key=lambda x: x.count, reverse=True)
 
