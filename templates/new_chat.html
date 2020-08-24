@@ -1814,6 +1814,8 @@
             room: "{{ room._id }}"
         });
 
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
         let message_input = document.getElementById('message_input');
 
         document.getElementById('message_input_form').onsubmit = function (e) {

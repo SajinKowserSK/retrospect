@@ -46,7 +46,7 @@ def handle_join_room_event(data):
     join_room(data['room'])
 
     roomLog = getRoomLog(data['room'])
-
+    is_unread(data['room'], data['userURL'])
     if roomLog is not None:
         updateLastJoin(data['room'], data['userURL'])
 
