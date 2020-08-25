@@ -7,6 +7,8 @@ import re
 from flask_socketio import SocketIO, join_room, leave_room
 import sys
 
+from helpers import *
+
 import bcrypt
 from pymongo.errors import DuplicateKeyError
 
@@ -149,11 +151,16 @@ def profileRedirect():
 def profile(url):
     tmpUser = getUser(url)
 
+    # case it of being the user viewing their own profile
     if current_user.is_anonymous == False and current_user.URL == url:
-        return render_template('profile.html')
+        return render_template('profile_old.html')
 
+    # case of it being another user on the platform viewing the profile
     elif current_user.is_anonymous == True or current_user.URL != url:
-        return render_template('view_profile.html', searched_user = tmpUser)
+        return render_template('view_profile_new.html', searched_user = tmpUser,
+                               chooseTagColor = chooseTagColor)
+
+    # case of it being non platform user viewing platform user (same as above, diff navbar)
 
     else:
         return render_template("Error.html")

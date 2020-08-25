@@ -1,4 +1,110 @@
+/*!
+ * Webflow: Front-end site library
+ * @license MIT
+ * Inline scripts may access the api using an async handler:
+ *   var Webflow = Webflow || [];
+ *   Webflow.push(readyFunction);
+ */
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+
+/* globals window, document, navigator, WEBFLOW_ENV_TEST */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Core site library
+ */
 
 var Webflow = {};
 var modules = {};
@@ -9,13 +115,20 @@ var $win = $(window);
 var $doc = $(document);
 var isFunction = $.isFunction;
 
-var _ = Webflow._ = __webpack_require__(5);
+var _ = Webflow._ = __webpack_require__(6);
 
 var tram = Webflow.tram = __webpack_require__(1) && $.tram;
 var domready = false;
 var destroyed = false;
 tram.config.hideBackface = false;
 tram.config.keepInherited = true;
+/**
+ * Webflow.define - Define a named module
+ * @param  {string} name
+ * @param  {function} factory
+ * @param  {object} options
+ * @return {object}
+ */
 
 Webflow.define = function (name, factory, options) {
   if (modules[name]) {
@@ -26,6 +139,11 @@ Webflow.define = function (name, factory, options) {
   bindModule(instance);
   return instance;
 };
+/**
+ * Webflow.require - Require a named module
+ * @param  {string} name
+ * @return {object}
+ */
 
 
 Webflow.require = function (name) {
@@ -78,6 +196,10 @@ function removeReady(module) {
     return readyFn !== module.ready;
   });
 }
+/**
+ * Webflow.push - Add a ready handler into secondary queue
+ * @param {function} ready  Callback to invoke on domready
+ */
 
 
 Webflow.push = function (ready) {
@@ -90,6 +212,11 @@ Webflow.push = function (ready) {
 
   secondary.push(ready);
 };
+/**
+ * Webflow.env - Get the state of the Webflow app
+ * @param {string} mode [optional]
+ * @return {boolean}
+ */
 
 
 Webflow.env = function (mode) {
@@ -137,12 +264,20 @@ var touchTarget; // Listen for both events to support touch/mouse hybrid devices
 touch && $doc.on('touchstart mousedown', function (evt) {
   touchTarget = evt.target;
 });
+/**
+ * Webflow.validClick - validate click target against current touch target
+ * @param  {HTMLElement} clickTarget  Element being clicked
+ * @return {Boolean}  True if click target is valid (always true on non-touch)
+ */
 
 Webflow.validClick = touch ? function (clickTarget) {
   return clickTarget === touchTarget || $.contains(clickTarget, touchTarget);
 } : function () {
   return true;
 };
+/**
+ * Webflow.resize, Webflow.scroll - throttled event proxies
+ */
 
 var resizeEvents = 'resize.webflow orientationchange.webflow load.webflow';
 var scrollEvents = 'scroll.webflow ' + resizeEvents;
@@ -163,6 +298,10 @@ function eventProxy(target, types) {
   if (target && types) {
     target.on(types, proxy.up);
   }
+  /**
+   * Add an event handler
+   * @param  {function} handler
+   */
 
 
   proxy.on = function (handler) {
@@ -176,6 +315,10 @@ function eventProxy(target, types) {
 
     handlers.push(handler);
   };
+  /**
+   * Remove an event handler
+   * @param  {function} handler
+   */
 
 
   proxy.off = function (handler) {
@@ -230,6 +373,10 @@ function restoreModules() {
 
   _.each(modules, bindModule);
 }
+/**
+ * Webflow.load - Add a window load handler that will run even if load event has already happened
+ * @param  {function} handler
+ */
 
 
 var deferLoad;
@@ -283,13 +430,29 @@ bindLoad(); // Export commonjs module
 
 module.exports = window.Webflow = Webflow;
 
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
 
+/* eslint-disable eslint-comments/no-unlimited-disable */
 
+/* eslint-disable */
+
+/*!
+ * tram.js v0.8.2-global
+ * Cross-browser CSS3 transitions in JavaScript
+ * https://github.com/bkwld/tram
+ * MIT License
+ */
+
+/* prettier-ignore */
 
 var _interopRequireDefault = __webpack_require__(2);
 
-var _typeof2 = _interopRequireDefault(__webpack_require__(6));
+var _typeof2 = _interopRequireDefault(__webpack_require__(7));
 
 window.tram = function (a) {
   function b(a, b) {
@@ -1155,8 +1318,94 @@ window.tram = function (a) {
   return a.tram = b;
 }(window.jQuery);
 
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// @wf-will-never-add-flow-to-this-file
+
+/* globals window, document */
+
+/* eslint-disable no-var */
+// eslint-disable-next-line strict
 
 
+var IXEvents = __webpack_require__(17);
+
+function dispatchCustomEvent(element, eventName) {
+  var event = document.createEvent('CustomEvent');
+  event.initCustomEvent(eventName, true, true, null);
+  element.dispatchEvent(event);
+}
+/**
+ * Webflow: IX Event triggers for other modules
+ */
+
+
+var $ = window.jQuery;
+var api = {};
+var namespace = '.w-ix';
+var eventTriggers = {
+  reset: function reset(i, el) {
+    IXEvents.triggers.reset(i, el);
+  },
+  intro: function intro(i, el) {
+    IXEvents.triggers.intro(i, el);
+    dispatchCustomEvent(el, 'COMPONENT_ACTIVE');
+  },
+  outro: function outro(i, el) {
+    IXEvents.triggers.outro(i, el);
+    dispatchCustomEvent(el, 'COMPONENT_INACTIVE');
+  }
+};
+api.triggers = {};
+api.types = {
+  INTRO: 'w-ix-intro' + namespace,
+  OUTRO: 'w-ix-outro' + namespace
+};
+$.extend(api.triggers, eventTriggers);
+module.exports = api;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(5);
+__webpack_require__(8);
+__webpack_require__(9);
+__webpack_require__(10);
+__webpack_require__(11);
+__webpack_require__(16);
+module.exports = __webpack_require__(18);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+
+/* globals document, window, navigator */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Brand pages on the subdomain
+ */
 
 var Webflow = __webpack_require__(0);
 
@@ -1234,10 +1483,41 @@ Webflow.define('brand', module.exports = function ($) {
   return api;
 });
 
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+// Include tram for frame-throttling
+
+/* globals window */
+
+/* eslint-disable no-var */
 
 var $ = window.$;
 var tram = __webpack_require__(1) && $.tram;
+/*!
+ * Webflow._ (aka) Underscore.js 1.6.0 (custom build)
+ * _.each
+ * _.map
+ * _.find
+ * _.filter
+ * _.any
+ * _.contains
+ * _.delay
+ * _.defer
+ * _.throttle (webflow)
+ * _.debounce
+ * _.keys
+ * _.has
+ * _.now
+ *
+ * http://underscorejs.org
+ * (c) 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Underscore may be freely distributed under the MIT license.
+ * @license MIT
+ */
 
 module.exports = function () {
   var _ = {}; // Current version.
@@ -1246,21 +1526,26 @@ module.exports = function () {
 
   var breaker = {}; // Save bytes in the minified (but not gzipped) version:
 
+  /* eslint-disable one-var */
 
   var ArrayProto = Array.prototype,
       ObjProto = Object.prototype,
       FuncProto = Function.prototype;
+  /* eslint-enable one-var */
   // Create quick reference variables for speed access to core prototypes.
 
+  /* eslint-disable one-var, no-unused-vars */
 
   var push = ArrayProto.push,
       slice = ArrayProto.slice,
       concat = ArrayProto.concat,
       toString = ObjProto.toString,
       hasOwnProperty = ObjProto.hasOwnProperty;
+  /* eslint-enable one-var, no-unused-vars */
   // All **ECMAScript 5** native function implementations that we hope to use
   // are declared here.
 
+  /* eslint-disable one-var, no-unused-vars */
 
   var nativeForEach = ArrayProto.forEach,
       nativeMap = ArrayProto.map,
@@ -1274,6 +1559,7 @@ module.exports = function () {
       nativeIsArray = Array.isArray,
       nativeKeys = Object.keys,
       nativeBind = FuncProto.bind;
+  /* eslint-enable one-var, no-unused-vars */
   // Collection Functions
   // --------------------
   // The cornerstone, an `each` implementation, aka `forEach`.
@@ -1281,6 +1567,7 @@ module.exports = function () {
   // Delegates to **ECMAScript 5**'s native `forEach` if available.
 
   var each = _.each = _.forEach = function (obj, iterator, context) {
+    /* jshint shadow:true */
     if (obj == null) return obj;
 
     if (nativeForEach && obj.forEach === nativeForEach) {
@@ -1569,9 +1856,44 @@ module.exports = function () {
 
   return _;
 }();
+/* eslint-enable */
 
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
 
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+
+/* globals window, document */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Auto-select links to current page or section
+ */
 
 var Webflow = __webpack_require__(0);
 
@@ -1688,8 +2010,20 @@ Webflow.define('links', module.exports = function ($, _) {
   return api;
 });
 
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
 
+/* globals window, document */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Smooth scroll
+ */
 
 var Webflow = __webpack_require__(0);
 
@@ -1698,6 +2032,13 @@ Webflow.define('scroll', module.exports = function ($) {
   var CLICK = 'click';
   var EMPTY_LINK_NS = '.wf-empty-link';
   var SCROLL_NS = '.wf-scroll';
+  /**
+   * A collection of namespaced events found in this module.
+   * Namespaced events encapsulate our code, and make it safer and easier
+   * for designers to apply custom code overrides.
+   * @see https://api.jquery.com/on/#event-names
+   * @typedef {Object.<string>} NamespacedEventsCollection
+   */
 
   var NS_EVENTS = {
     CLICK_EMPTY: CLICK + EMPTY_LINK_NS,
@@ -1709,8 +2050,18 @@ Webflow.define('scroll', module.exports = function ($) {
   var history = inIframe() ? null : win.history;
   var validHash = /^[a-zA-Z0-9][\w:.-]*$/;
   var emptyHrefSelector = 'a[href="#"]';
+  /**
+   * Select only links whose href:
+   * - contains a #
+   * - is not one of our namespaced TabLink elements
+   * - is not _only_ a #
+   */
 
   var localHrefSelector = 'a[href*="#"]:not(.w-tab-link):not(' + emptyHrefSelector + ')';
+  /**
+   * The current page url, minus the hash.
+   * Will be set in the `ready` function
+   */
 
   var locHref;
 
@@ -1721,6 +2072,9 @@ Webflow.define('scroll', module.exports = function ($) {
       return true;
     }
   }
+  /**
+   * Determine if we should execute custom scroll
+   */
 
 
   function validateScroll(e) {
@@ -1846,6 +2200,12 @@ Webflow.define('scroll', module.exports = function ($) {
         CLICK_SCROLL = NS_EVENTS.CLICK_SCROLL;
     locHref = loc.href.split('#')[0];
     $doc.on(CLICK_SCROLL, localHrefSelector, validateScroll);
+    /**
+     * Prevent empty hash links from triggering scroll.
+     * Legacy feature to preserve: use the default "#" link
+     * to trigger an interaction, and do not want the page
+     * to scroll to the top.
+     */
 
     $doc.on(CLICK_EMPTY, emptyHrefSelector, function (e) {
       e.preventDefault();
@@ -1858,8 +2218,22 @@ Webflow.define('scroll', module.exports = function ($) {
   };
 });
 
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
 
+/* globals document, window */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Touch events
+ * Supports legacy 'tap' event
+ * Adds a 'swipe' event to desktop and mobile
+ */
 
 var Webflow = __webpack_require__(0);
 
@@ -1985,12 +2359,30 @@ Webflow.define('touch', module.exports = function ($) {
   return api;
 });
 
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
 
+/* globals
+  window,
+  document,
+  FormData,
+  WEBFLOW_FORM_API_HOST,
+  WEBFLOW_FORM_OLDIE_HOST
+*/
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Forms
+ */
 
 var _interopRequireDefault = __webpack_require__(2);
 
-var _slicedToArray2 = _interopRequireDefault(__webpack_require__(11));
+var _slicedToArray2 = _interopRequireDefault(__webpack_require__(12));
 
 var Webflow = __webpack_require__(0);
 
@@ -2493,12 +2885,92 @@ Webflow.define('forms', module.exports = function ($, _) {
   return api;
 });
 
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
 
+var arrayWithHoles = __webpack_require__(13);
 
+var iterableToArrayLimit = __webpack_require__(14);
+
+var nonIterableRest = __webpack_require__(15);
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+
+/* globals window, document */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Navbar component
+ */
 
 var Webflow = __webpack_require__(0);
 
-var IXEvents = __webpack_require__(16);
+var IXEvents = __webpack_require__(3);
 
 var KEY_CODES = {
   ARROW_LEFT: 37,
@@ -3080,45 +3552,20 @@ Webflow.define('navbar', module.exports = function ($, _) {
   return api;
 });
 
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
 
-// eslint-disable-next-line strict
+"use strict";
+// @wf-will-never-add-flow-to-this-file
 
+/* globals window */
 
-var IXEvents = __webpack_require__(17);
+/* eslint-disable no-var */
 
-function dispatchCustomEvent(element, eventName) {
-  var event = document.createEvent('CustomEvent');
-  event.initCustomEvent(eventName, true, true, null);
-  element.dispatchEvent(event);
-}
-
-
-var $ = window.jQuery;
-var api = {};
-var namespace = '.w-ix';
-var eventTriggers = {
-  reset: function reset(i, el) {
-    IXEvents.triggers.reset(i, el);
-  },
-  intro: function intro(i, el) {
-    IXEvents.triggers.intro(i, el);
-    dispatchCustomEvent(el, 'COMPONENT_ACTIVE');
-  },
-  outro: function outro(i, el) {
-    IXEvents.triggers.outro(i, el);
-    dispatchCustomEvent(el, 'COMPONENT_INACTIVE');
-  }
-};
-api.triggers = {};
-api.types = {
-  INTRO: 'w-ix-intro' + namespace,
-  OUTRO: 'w-ix-outro' + namespace
-};
-$.extend(api.triggers, eventTriggers);
-module.exports = api;
-
-
-
+/**
+ * Webflow: IX Event triggers for other modules
+ */
 // eslint-disable-next-line strict
 
 
@@ -3185,3 +3632,362 @@ api.async = function () {
 api.async();
 module.exports = api;
 
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ // @wf-will-never-add-flow-to-this-file
+
+/* global document window */
+
+/* eslint-disable no-var */
+
+/**
+ * Webflow: Tabs component
+ */
+
+var Webflow = __webpack_require__(0);
+
+var IXEvents = __webpack_require__(3);
+
+Webflow.define('tabs', module.exports = function ($) {
+  var api = {};
+  var tram = $.tram;
+  var $doc = $(document);
+  var $tabs;
+  var design;
+  var env = Webflow.env;
+  var safari = env.safari;
+  var inApp = env();
+  var tabAttr = 'data-w-tab';
+  var paneAttr = 'data-w-pane';
+  var namespace = '.w-tabs';
+  var linkCurrent = 'w--current';
+  var tabActive = 'w--tab-active';
+  var ix = IXEvents.triggers;
+  var inRedraw = false; // -----------------------------------
+  // Module methods
+
+  api.ready = api.design = api.preview = init;
+
+  api.redraw = function () {
+    inRedraw = true;
+    init();
+    inRedraw = false;
+  };
+
+  api.destroy = function () {
+    $tabs = $doc.find(namespace);
+
+    if (!$tabs.length) {
+      return;
+    }
+
+    $tabs.each(resetIX);
+    removeListeners();
+  }; // -----------------------------------
+  // Private methods
+
+
+  function init() {
+    design = inApp && Webflow.env('design'); // Find all instances on the page
+
+    $tabs = $doc.find(namespace);
+
+    if (!$tabs.length) {
+      return;
+    }
+
+    $tabs.each(build);
+
+    if (Webflow.env('preview') && !inRedraw) {
+      $tabs.each(resetIX);
+    }
+
+    removeListeners();
+    addListeners();
+  }
+
+  function removeListeners() {
+    Webflow.redraw.off(api.redraw);
+  }
+
+  function addListeners() {
+    Webflow.redraw.on(api.redraw);
+  }
+
+  function resetIX(i, el) {
+    var data = $.data(el, namespace);
+
+    if (!data) {
+      return;
+    }
+
+    data.links && data.links.each(ix.reset);
+    data.panes && data.panes.each(ix.reset);
+  }
+
+  function build(i, el) {
+    var widgetHash = namespace.substr(1) + '-' + i;
+    var $el = $(el); // Store state in data
+
+    var data = $.data(el, namespace);
+
+    if (!data) {
+      data = $.data(el, namespace, {
+        el: $el,
+        config: {}
+      });
+    }
+
+    data.current = null;
+    data.tabIdentifier = widgetHash + '-' + tabAttr;
+    data.paneIdentifier = widgetHash + '-' + paneAttr;
+    data.menu = $el.children('.w-tab-menu');
+    data.links = data.menu.children('.w-tab-link');
+    data.content = $el.children('.w-tab-content');
+    data.panes = data.content.children('.w-tab-pane'); // Remove old events
+
+    data.el.off(namespace);
+    data.links.off(namespace); // This role is necessary in the ARIA spec
+
+    data.menu.attr('role', 'tablist'); // Set all tabs unfocusable
+
+    data.links.attr('tabindex', '-1'); // Set config from data attributes
+
+    configure(data); // Wire up events when not in design mode
+
+    if (!design) {
+      data.links.on('click' + namespace, linkSelect(data));
+      data.links.on('keydown' + namespace, handleLinkKeydown(data)); // Trigger first intro event from current tab
+
+      var $link = data.links.filter('.' + linkCurrent);
+      var tab = $link.attr(tabAttr);
+      tab && changeTab(data, {
+        tab: tab,
+        immediate: true
+      });
+    }
+  }
+
+  function configure(data) {
+    var config = {}; // Set config options from data attributes
+
+    config.easing = data.el.attr('data-easing') || 'ease';
+    var intro = parseInt(data.el.attr('data-duration-in'), 10); // eslint-disable-next-line no-self-compare
+
+    intro = config.intro = intro === intro ? intro : 0;
+    var outro = parseInt(data.el.attr('data-duration-out'), 10); // eslint-disable-next-line no-self-compare
+
+    outro = config.outro = outro === outro ? outro : 0;
+    config.immediate = !intro && !outro; // Store config in data
+
+    data.config = config;
+  }
+
+  function getActiveTabIdx(data) {
+    var tab = data.current;
+    return Array.prototype.findIndex.call(data.links, function (t) {
+      return t.getAttribute(tabAttr) === tab;
+    }, null);
+  }
+
+  function linkSelect(data) {
+    return function (evt) {
+      evt.preventDefault();
+      var tab = evt.currentTarget.getAttribute(tabAttr);
+      tab && changeTab(data, {
+        tab: tab
+      });
+    };
+  }
+
+  function handleLinkKeydown(data) {
+    return function (evt) {
+      var currentIdx = getActiveTabIdx(data);
+      var keyName = evt.key;
+      var keyMap = {
+        ArrowLeft: currentIdx - 1,
+        ArrowUp: currentIdx - 1,
+        ArrowRight: currentIdx + 1,
+        ArrowDown: currentIdx + 1,
+        End: data.links.length - 1,
+        Home: 0
+      }; // Bail out of function if this key is not
+      // involved in tab management
+
+      if (!(keyName in keyMap)) return;
+      evt.preventDefault();
+      var nextIdx = keyMap[keyName]; // go back to end of tabs if we wrap past the start
+
+      if (nextIdx === -1) {
+        nextIdx = data.links.length - 1;
+      } // go back to start if we wrap past the last tab
+
+
+      if (nextIdx === data.links.length) {
+        nextIdx = 0;
+      }
+
+      var tabEl = data.links[nextIdx];
+      var tab = tabEl.getAttribute(tabAttr);
+      tab && changeTab(data, {
+        tab: tab
+      });
+    };
+  }
+
+  function changeTab(data, options) {
+    options = options || {};
+    var config = data.config;
+    var easing = config.easing;
+    var tab = options.tab; // Don't select the same tab twice
+
+    if (tab === data.current) {
+      return;
+    }
+
+    data.current = tab;
+    /**
+     * The currently active tab.
+     * Will be referenced to manage focus after
+     * TabLink attributes are changed
+     * @type {HTMLAnchorElement}
+     */
+
+    var currentTab; // Select the current link
+
+    data.links.each(function (i, el) {
+      var $el = $(el); // Add important attributes at build time.
+
+      if (options.immediate || config.immediate) {
+        // Store corresponding pane for reference.
+        var pane = data.panes[i]; // IDs are necessary for ARIA relationships,
+        // so if the user did not create one, we create one
+        // using our generated identifier
+
+        if (!el.id) {
+          el.id = data.tabIdentifier + '-' + i;
+        }
+
+        if (!pane.id) {
+          pane.id = data.paneIdentifier + '-' + i;
+        }
+
+        el.href = '#' + pane.id; // Tab elements must take this role
+
+        el.setAttribute('role', 'tab'); // Tab elements must reference the unique ID of the panel
+        // that they control
+
+        el.setAttribute('aria-controls', pane.id); // Tab elements must report that they are not selected
+        // by default
+
+        el.setAttribute('aria-selected', 'false'); // Panes must take on the `Tabpanel` role
+
+        pane.setAttribute('role', 'tabpanel'); // Elements with tabpanel role must be labelled by
+        // their controlling tab
+
+        pane.setAttribute('aria-labelledby', el.id);
+      }
+
+      if (el.getAttribute(tabAttr) === tab) {
+        // This is the current tab. Store it.
+        currentTab = el;
+        $el.addClass(linkCurrent).removeAttr('tabindex').attr({
+          'aria-selected': 'true'
+        }).each(ix.intro);
+      } else if ($el.hasClass(linkCurrent)) {
+        $el.removeClass(linkCurrent).attr({
+          tabindex: '-1',
+          'aria-selected': 'false'
+        }).each(ix.outro);
+      }
+    }); // Find the new tab panes and keep track of previous
+
+    var targets = [];
+    var previous = [];
+    data.panes.each(function (i, el) {
+      var $el = $(el);
+
+      if (el.getAttribute(tabAttr) === tab) {
+        targets.push(el);
+      } else if ($el.hasClass(tabActive)) {
+        previous.push(el);
+      }
+    });
+    var $targets = $(targets);
+    var $previous = $(previous); // Switch tabs immediately and bypass transitions
+
+    if (options.immediate || config.immediate) {
+      $targets.addClass(tabActive).each(ix.intro);
+      $previous.removeClass(tabActive); // Redraw to benefit components in the hidden tab pane
+      // But only if not currently in the middle of a redraw
+
+      if (!inRedraw) {
+        Webflow.redraw.up();
+      }
+
+      return;
+    } // Focus if this is not the on-page-load call to `changeTab`
+    else {
+        // Backwards compatible hack to prevent focus from scrolling
+        var x = window.scrollX;
+        var y = window.scrollY;
+        currentTab.focus();
+        window.scrollTo(x, y);
+      } // Fade out the currently active tab before intro
+
+
+    if ($previous.length && config.outro) {
+      $previous.each(ix.outro);
+      tram($previous).add('opacity ' + config.outro + 'ms ' + easing, {
+        fallback: safari
+      }).start({
+        opacity: 0
+      }).then(function () {
+        return fadeIn(config, $previous, $targets);
+      });
+    } else {
+      // Skip the outro and play intro
+      fadeIn(config, $previous, $targets);
+    }
+  } // Fade in the new target
+
+
+  function fadeIn(config, $previous, $targets) {
+    // Clear previous active class + styles touched by tram
+    // We cannot remove the whole inline style because it could be dynamically bound
+    $previous.removeClass(tabActive).css({
+      opacity: '',
+      transition: '',
+      transform: '',
+      width: '',
+      height: ''
+    }); // Add active class to new target
+
+    $targets.addClass(tabActive).each(ix.intro);
+    Webflow.redraw.up(); // Set opacity immediately if intro is zero
+
+    if (!config.intro) {
+      return tram($targets).set({
+        opacity: 1
+      });
+    } // Otherwise fade in opacity
+
+
+    tram($targets).set({
+      opacity: 0
+    }).redraw().add('opacity ' + config.intro + 'ms ' + config.easing, {
+      fallback: safari
+    }).start({
+      opacity: 1
+    });
+  } // Export module
+
+
+  return api;
+});
+
+/***/ })
+/******/ ]);
