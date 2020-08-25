@@ -32,19 +32,23 @@
     </div>
   </div>
   <div class="section-4">
-    <div class="container-3 w-container"><img src="images/0.jpg" alt="" class="profilepicture">
+    <div class="container-3 w-container"><img src={{searched_user.image}} alt="" class="profilepicture">
       <div class="profileheadersection">
         <div class="profilename-requestchatdivblock">
-          <h1 class="profilenameheading">Jordan Marshall</h1>
+          <h1 class="profilenameheading">{{searched_user.name}}</h1>
         </div>
-        <div class="tagdivblock"><a href="#" class="consultingtag w-button">Consulting</a><a href="#" class="vctag w-button">Venture Capital</a><a href="#" class="pmtag w-button">Product Management</a><a href="#" class="ibtag w-button">Investment Banking</a><a href="#" class="entrepreneurshiptag w-button">Entrepreneurship</a><a href="#" class="datag w-button">Data Analytics</a></div>
+        <div class="tagdivblock">
+          {% for keyword in searched_user.keywords %}
+          <a href="#" class={{chooseTagColor(1)}}>{{keyword}}</a>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
   <div class="section-2">
     <div class="w-container">
       <div class="profile-catch-phrase w-richtext">
-        <h2>My name is Jordan. I am a third-year student studying BMOS at Western University.</h2>
+        <h2>{{searched_user.header}}</h2>
       </div>
       <div class="div-block-4"><a href="#" class="requestmentor w-button">Request Mentor</a><a href="#" class="requestchat w-button">Message</a></div>
     </div>
@@ -56,26 +60,27 @@
           <a data-w-tab="Tab 1" class="tab-link-tab-1-2 w-inline-block w-tab-link w--current">
             <div class="text-block-5">About Me</div>
           </a>
-          <a data-w-tab="Tab 2" class="tab-link-tab-2-2 w-inline-block w-tab-link">
-            <div class="text-block-6">Mentoring</div>
-          </a>
-          <a data-w-tab="Tab 3" class="tab-link-tab-3-2 w-inline-block w-tab-link">
-            <div class="text-block-7">Contributions</div>
-          </a>
+<!--          next iteration -->
+<!--          <a data-w-tab="Tab 2" class="tab-link-tab-2-2 w-inline-block w-tab-link">-->
+<!--            <div class="text-block-6">Mentoring</div>-->
+<!--          </a>-->
+<!--          <a data-w-tab="Tab 3" class="tab-link-tab-3-2 w-inline-block w-tab-link">-->
+<!--            <div class="text-block-7">Contributions</div>-->
+<!--          </a>-->
         </div>
         <div class="w-tab-content">
           <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
             <div class="rich-text-block-2 w-richtext">
               <h2>About Me</h2>
-              <p>I enjoy long walks on the beach.</p>
+              <p>{{searched_user.bio}}</p>
               <h4>Some hobbies</h4>
-              <p>Avid Basketball &amp; Call of Duty competitor!</p>
+              <p>Placeholder text. Placeholder text. Placeholder text.</p>
               <h4>Background</h4>
-              <p>Born and raised in Toronto, Canada. Go leafs go!</p>
+              <p>Placeholder text. Placeholder text. Placeholder text.</p>
             </div>
           </div>
-          <div data-w-tab="Tab 2" class="w-tab-pane"></div>
-          <div data-w-tab="Tab 3" class="w-tab-pane"></div>
+<!--          <div data-w-tab="Tab 2" class="w-tab-pane"></div>-->
+<!--          <div data-w-tab="Tab 3" class="w-tab-pane"></div>-->
         </div>
       </div>
     </div>
