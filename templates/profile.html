@@ -38,11 +38,14 @@
           <h1 class="profilenameheading">{{searched_user.name}}</h1>
         </div>
         <div class="tagdivblock">
-          {% set last_used = 7 %}
+
+
           {% for keyword in searched_user.keywords %}
 <!--          <a href="#" class="ibtag w-button">Investment Banking</a>-->
 <!--          <a href="#" class="ibtag w-button">Product Management</a>-->
-          <a href="#" id="user_keyword" class={{ chooseTagColor(last_used) }}>{{keyword}}</a>
+          <a href="#" id="user_keyword" class= {{ chooseTagColor(loop.index) }}>{{keyword}}</a>
+
+
           {% endfor %}
         </div>
       </div>

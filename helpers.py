@@ -1,15 +1,20 @@
 from random import randint
 
-def chooseTagColor(last_used):
-    tags_class = ["vctag w-button", "pmtag w-button",
-                  "ibtag w-button","entrepreneurshiptag w-button",
-                  "datag w-button", "consultingtag w-button"]
+class tagColor:
+    def __init__(self, number, color):
+        self.number = number
+        self.color = color
 
-    select = randint(0,5)
-    while select == last_used:
-        select = randint(0, 5)
+def chooseTagColor(index):
+    tags_class = ["consultingtag w-button", "vctag w-button",
+                    "pmtag w-button", "ibtag w-button",
+                  "entrepreneurshiptag w-button", "datag w-button"]
 
-    return tags_class[select]
+
+    index = index - 1
+    index = index % len(tags_class)
+
+    return tags_class[index]
 
 
 
