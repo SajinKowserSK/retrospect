@@ -43,7 +43,7 @@
           {% for keyword in searched_user.keywords %}
 <!--          <a href="#" class="ibtag w-button">Investment Banking</a>-->
 <!--          <a href="#" class="ibtag w-button">Product Management</a>-->
-          <a href="#" id="user_keyword" class= {{ chooseTagColor(loop.index) }}>{{keyword}}</a>
+          <a href="../keyword/{{keyword}}" id="user_keyword" class= {{ chooseTagColor(loop.index) }}>{{keyword}}</a>
 
 
           {% endfor %}

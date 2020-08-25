@@ -21,10 +21,8 @@
   <component name="ChangeListManager">
     <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/edit_profile_new.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/edit_profile_new.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_profile_anonymous.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/view_profile_anonymous.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/view_profile_new.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/view_profile_new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,10 +210,10 @@
       <screen x="1920" y="-621" width="1920" height="1040" />
     </state>
     <state x="2608" y="-207" key="git4idea.ui.GitResetDialog/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1598376023130" />
-    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup" timestamp="1598248683539">
+    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup" timestamp="1598389939873">
       <screen x="1920" y="-621" width="1920" height="1040" />
     </state>
-    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1598248683539" />
+    <state x="2543" y="-396" width="672" height="678" key="search.everywhere.popup/0.40.1280.680/1920.-621.1920.1040@1920.-621.1920.1040" timestamp="1598389939873" />
     <state x="2543" y="-340" width="672" height="665" key="search.everywhere.popup/1920.-561.1920.1020/0.40.1280.680@1920.-561.1920.1020" timestamp="1598150551265" />
   </component>
   <component name="XDebuggerManager">
@@ -223,7 +221,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>174</line>
+          <line>190</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

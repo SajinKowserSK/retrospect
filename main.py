@@ -89,9 +89,25 @@ def home():
     return render_template("index.html")
   
 
-@app.route('/mentors',methods=['GET', 'POST'])
+@app.route('/search',methods=['GET', 'POST'])
 def mentors():
     if request.method == 'GET':
+        return render_template("mentors.html")
+
+    if request.method == 'POST':
+        return render_template("mentors.html",
+                                   mentors=requests.get(api_base_url +
+                                   "mentors/?keywords="+request.form['keywords']).json(),
+                                   keywords=request.form['keywords'])
+
+@app.route('/keyword/<keyword>',methods=['GET', 'POST'])
+def keyword_search(keyword):
+    if request.method == 'GET':
+        return render_template("mentors.html",
+                               mentors=requests.get(api_base_url +
+                                                    "mentors/?keywords=" + keyword).json(),
+                               keywords=keyword)
+
         return render_template("mentors.html")
 
     if request.method == 'POST':
