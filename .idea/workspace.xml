@@ -20,33 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06-p-1600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06-p-2000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06-p-2600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/NP_M64_06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart-p-1600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart-p-2000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart-p-800.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/Notsurewheretostart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/retrospectunlockyourself-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/retrospectunlockyourself-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/retrospectunlockyourself-p-800.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/retrospectunlockyourself.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/profile_old.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/view_profile_new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/jordan-marshalls-initial-project.webflow.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/jordan-marshalls-initial-project.webflow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/normalize.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/webflow.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/webflow.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/js/webflow.js" beforeDir="false" afterPath="$PROJECT_DIR$/templates/js/webflow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/view_profile_new.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/view_profile_new.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
