@@ -173,7 +173,7 @@ def profile(url):
         return render_template("Error.html")
 
 
-@app.route("/profile/editProfile", methods = ['GET', 'POST'])
+@app.route("/editProfile", methods = ['GET', 'POST'])
 @login_required
 def editProfile():
     if request.method == 'GET':
