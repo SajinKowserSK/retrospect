@@ -157,7 +157,13 @@ def profile(url):
                                chooseTagColor = chooseTagColor)
 
     # case of it being another user on the platform viewing the profile
-    elif current_user.is_anonymous == True or current_user.URL != url:
+
+    elif current_user.is_anonymous == True:
+        return render_template('view_profile_anonymous.html', searched_user = tmpUser,
+                               chooseTagColor = chooseTagColor)
+
+
+    elif current_user.is_anonymous != True and current_user.URL != url:
         return render_template('view_profile_new.html', searched_user = tmpUser,
                                chooseTagColor = chooseTagColor)
 
@@ -322,7 +328,7 @@ def view_room(room_id):
                 newDict['name'] = participant['name']
                 newDict['image'] = participant['image']
 
-                remaining = ['email', "bio", "keywords", "url"]
+                remaining = ['email', "bio", "keywords", "url", "header"]
                 for key in remaining:
                     newDict[key] = "None"
 

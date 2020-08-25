@@ -25,7 +25,7 @@
       <a href="index.html" class="brand-link w-nav-brand">
         <h3 id="site-title" class="site-title">Retrospect</h3>
       </a>
-      <nav role="navigation" class="nav-menu w-nav-menu"><a href="../mentors" id="nav-link" class="nav-link w-nav-link">Search For Mentors</a><a href="../logout" id="nav-link" class="nav-link w-nav-link">Log Out</a></nav>
+      <nav role="navigation" class="nav-menu w-nav-menu"><a href="../mentors" id="nav-link" class="nav-link w-nav-link">Search For Mentors</a><a href="../login" id="nav-link" class="nav-link w-nav-link">Log in</a></nav>
       <div class="menu-button w-nav-button">
         <div class="menu-button-icon w-icon-nav-menu"></div>
       </div>
@@ -38,11 +38,10 @@
           <h1 class="profilenameheading">{{searched_user.name}}</h1>
         </div>
         <div class="tagdivblock">
-          {% set last_used = 7 %}
           {% for keyword in searched_user.keywords %}
 <!--          <a href="#" class="ibtag w-button">Investment Banking</a>-->
 <!--          <a href="#" class="ibtag w-button">Product Management</a>-->
-          <a href="#" id="user_keyword" class={{ chooseTagColor(last_used) }}>{{keyword}}</a>
+          <a href="#" class={{ chooseTagColor(1) }}>{{keyword}}</a>
           {% endfor %}
         </div>
       </div>
@@ -53,10 +52,7 @@
       <div class="profile-catch-phrase w-richtext">
         <h2>{{searched_user.header}}</h2>
       </div>
-      <div class="div-block-4">
-        <a href="#" class="requestmentor w-button">Request Mentor</a>
-        <a href="#" class="requestchat w-button">Message</a></div>
-        <a href="#" id="edit_profile" class="requestchat w-button">Edit Profile</a></div>
+      <div class="div-block-4"><a href="#" class="requestmentor w-button">Request Mentor</a><a href="#" class="requestchat w-button">Message</a></div>
     </div>
   </div>
   <div class="section-3">
@@ -96,32 +92,9 @@
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>
 
-<script>
-
-        function pickColor() {
-
-            // Array containing colors
-            var colors = [
-                '#ff0000', '#00ff00', '#0000ff',
-                '#ff3333', '#ffff00', '#ff6600'
-            ];
-
-            // selecting random color
-            var random_color = colors[Math.floor(
-                    Math.random() * colors.length)];
-
-            var x = document.getElementById('user_keyword');
-            x.style.color = random_color;
-        }
-    </script>
-
 <style>
   :any-link {
   text-decoration: none;
-  }
-
-  #edit_profile{
-    background-color: #F4D255;
   }
 
 </style>
