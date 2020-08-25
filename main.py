@@ -177,7 +177,8 @@ def profile(url):
 @login_required
 def editProfile():
     if request.method == 'GET':
-        return render_template("editProfile.html")
+        return render_template("edit_profile_new.html", searched_user = current_user,
+                               chooseTagColor = chooseTagColor)
 
     # make sure password is good
 

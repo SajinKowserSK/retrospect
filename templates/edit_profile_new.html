@@ -44,7 +44,16 @@
                 <input type="text" class="w-input" maxlength="256" name="keywords" id="keywords" placeholder="">
 
         </div>
-        <div class="tagdivblock"><a href="#" class="consultingtag w-button">Consulting</a><a href="#" class="vctag w-button">Venture Capital</a><a href="#" class="pmtag w-button">Product Management</a><a href="#" class="ibtag w-button">Investment Banking</a><a href="#" class="entrepreneurshiptag w-button">Entrepreneurship</a><a href="#" class="datag w-button">Data Analytics</a></div>
+        <div class="tagdivblock">
+
+
+          {% for keyword in searched_user.keywords %}
+
+          <a href="#" id="user_keyword" class= {{ chooseTagColor(loop.index) }}>{{keyword}}</a>
+
+
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
@@ -64,12 +73,7 @@
           <a data-w-tab="Tab 1" class="tab-link-tab-1-2 w-inline-block w-tab-link w--current">
             <div class="text-block-5">About Me</div>
           </a>
-          <a data-w-tab="Tab 2" class="tab-link-tab-2-2 w-inline-block w-tab-link">
-            <div class="text-block-6">Mentoring</div>
-          </a>
-          <a data-w-tab="Tab 3" class="tab-link-tab-3-2 w-inline-block w-tab-link">
-            <div class="text-block-7">Contributions</div>
-          </a>
+
         </div>
         <div class="w-tab-content">
           <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
@@ -113,6 +117,11 @@
 </body>
 
 <style>
+
+  :any-link {
+    text-decoration: none;
+  }
+
     #name_input_css_id{
     font-size: 20px;
     }
