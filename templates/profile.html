@@ -9,9 +9,9 @@
   <meta content="Profile" property="twitter:title">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
-  <link href="../static/normalize.css" rel="stylesheet" type="text/css">
-  <link href="../static/webflow.css" rel="stylesheet" type="text/css">
-  <link href="../static/jordan-marshalls-initial-project.webflow.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/jordan-marshalls-initial-project.webflow.css" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
   <script type="text/javascript">WebFont.load({  google: {    families: ["Nunito:200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic","Fira Sans:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic","Source Sans Pro:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,900,900italic","Nunito:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic","Space Mono:regular,italic,700,700italic","Alfa Slab One:regular","DM Sans:regular,italic,500,500italic,700,700italic","DM Serif Display:regular,italic","Quattrocento:regular,700","Fanwood Text:regular,italic"]  }});</script>
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
@@ -25,34 +25,32 @@
       <a href="index.html" class="brand-link w-nav-brand">
         <h3 id="site-title" class="site-title">Retrospect</h3>
       </a>
-      <nav role="navigation" class="nav-menu w-nav-menu"><a href="#" id="nav-link" class="nav-link w-nav-link">Random Test Button</a><a href="#" id="nav-link" class="nav-link w-nav-link">Log In</a></nav>
+      <nav role="navigation" class="nav-menu w-nav-menu"><a href="../mentors" id="nav-link" class="nav-link w-nav-link">Search For Mentors</a><a href="../logout" id="nav-link" class="nav-link w-nav-link">Log Out</a></nav>
       <div class="menu-button w-nav-button">
         <div class="menu-button-icon w-icon-nav-menu"></div>
       </div>
     </div>
   </div>
   <div class="section-4">
-    <div class="container-3 w-container"><img src="../static/images/0.jpg" alt="" class="profilepicture">
+    <div class="container-3 w-container"><img src={{searched_user.image}} alt="" class="profilepicture">
       <div class="profileheadersection">
         <div class="profilename-requestchatdivblock">
-          <h1 class="profilenameheading">Jordan Marshall</h1>
+          <h1 class="profilenameheading">{{searched_user.name}}</h1>
         </div>
-
-
         <div class="tagdivblock">
-          <a href="#" class="consultingtag w-button">Consulting</a>
-          <a href="#" class="vctag w-button">Venture Capital</a>
-          <a href="#" class="pmtag w-button">Product Management</a>
-          <a href="#" class="ibtag w-button">Investment Banking</a>
-          <a href="#" class="entrepreneurshiptag w-button">Entrepreneurship</a>
-          <a href="#" class="datag w-button">Data Analytics</a></div>
+          {% for keyword in searched_user.keywords %}
+<!--          <a href="#" class="ibtag w-button">Investment Banking</a>-->
+<!--          <a href="#" class="ibtag w-button">Product Management</a>-->
+          <a href="#" class={{ chooseTagColor(1) }}>{{keyword}}</a>
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>
   <div class="section-2">
     <div class="w-container">
       <div class="profile-catch-phrase w-richtext">
-        <h2>My name is Jordan. I am a third-year student studying BMOS at Western University.</h2>
+        <h2>{{searched_user.header}}</h2>
       </div>
       <div class="div-block-4"><a href="#" class="requestmentor w-button">Request Mentor</a><a href="#" class="requestchat w-button">Message</a></div>
     </div>
@@ -64,6 +62,7 @@
           <a data-w-tab="Tab 1" class="tab-link-tab-1-2 w-inline-block w-tab-link w--current">
             <div class="text-block-5">About Me</div>
           </a>
+<!--          next iteration -->
 <!--          <a data-w-tab="Tab 2" class="tab-link-tab-2-2 w-inline-block w-tab-link">-->
 <!--            <div class="text-block-6">Mentoring</div>-->
 <!--          </a>-->
@@ -75,17 +74,16 @@
           <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
             <div class="rich-text-block-2 w-richtext">
               <h2>About Me</h2>
-              <p>I enjoy long walks on the beach.</p>
+              <p>{{searched_user.bio}}</p>
               <h4>Some hobbies</h4>
-              <p>Avid Basketball &amp; Call of Duty competitor!</p>
+              <p>Placeholder text. Placeholder text. Placeholder text.</p>
               <h4>Background</h4>
-              <p>Born and raised in Toronto, Canada. Go leafs go!</p>
+              <p>Placeholder text. Placeholder text. Placeholder text.</p>
             </div>
-<!--            next iteration-->
-<!--          </div>-->
-<!--&lt;!&ndash;          <div data-w-tab="Tab 2" class="w-tab-pane"></div>&ndash;&gt;-->
-<!--&lt;!&ndash;          <div data-w-tab="Tab 3" class="w-tab-pane"></div>&ndash;&gt;-->
-<!--        </div>-->
+          </div>
+<!--          <div data-w-tab="Tab 2" class="w-tab-pane"></div>-->
+<!--          <div data-w-tab="Tab 3" class="w-tab-pane"></div>-->
+        </div>
       </div>
     </div>
   </div>
@@ -93,4 +91,11 @@
   <script src="js/webflow.js" type="text/javascript"></script>
   <!-- [if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif] -->
 </body>
+
+<style>
+  :any-link {
+  text-decoration: none;
+  }
+
+</style>
 </html>

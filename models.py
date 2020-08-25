@@ -8,6 +8,7 @@ class User(UserMixin):
         self.email = user_dict['email']
         self.bio = user_dict['bio']
         self.keywords = user_dict['keywords']
+        self.header = user_dict['header']
         self.image = user_dict['image']
         self.authenticated = False
         self.URL = user_dict["url"]

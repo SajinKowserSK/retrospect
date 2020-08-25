@@ -153,7 +153,8 @@ def profile(url):
 
     # case it of being the user viewing their own profile
     if current_user.is_anonymous == False and current_user.URL == url:
-        return render_template('profile_old.html')
+        return render_template('profile.html', searched_user = current_user,
+                               chooseTagColor = chooseTagColor)
 
     # case of it being another user on the platform viewing the profile
     elif current_user.is_anonymous == True or current_user.URL != url:
