@@ -89,7 +89,7 @@ padding-top: 3%;
 padding-left: 2%;
 }
 
-.image {
+.image_card {
 height: 230px;
 width: 100%;
 }
@@ -114,6 +114,7 @@ width: 100%;
 max-width: 100%;
 padding-top: 0%;
 overflow: scroll;
+border-radius: 20px;
 
 }
 
