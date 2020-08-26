@@ -92,10 +92,10 @@ def home():
 @app.route('/search',methods=['GET', 'POST'])
 def mentors():
     if request.method == 'GET':
-        return render_template("mentors.html")
+        return render_template("new_search.html")
 
     if request.method == 'POST':
-        return render_template("mentors.html",
+        return render_template("post-search.html",
                                    mentors=requests.get(api_base_url +
                                    "mentors/?keywords="+request.form['keywords']).json(),
                                    keywords=request.form['keywords'])
