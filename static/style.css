@@ -373,7 +373,7 @@ label {
 
 
 @media screen and (max-width: 768px) {
-  .container {
+  .container, .container-success {
     width: calc( 100% - 30px);
     max-width: 100%; }
 
