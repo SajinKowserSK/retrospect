@@ -84,9 +84,17 @@ def load_user(email):
     except:
         return redirect(home)
 
-@app.route('/',methods=['GET'])
+@app.route('/',methods=['GET', 'POST'])
 def home():
-    return render_template("index.html")
+
+    if request.method == "POST":
+        email = request.form['email']
+        type = request.form['type']
+        add_to_signup(email, type)
+
+        return render_template("post-waitlist.html")
+
+    return render_template("launch.html")
 
 @app.route('/index.html',methods=['GET'])
 def index():

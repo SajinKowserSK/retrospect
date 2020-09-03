@@ -34,12 +34,14 @@
         <a href="index.html" aria-current="page" class="brand-link w-nav-brand w--current">
           <h3 id="site-title" class="site-title">Retrospect</h3>
         </a>
-        <nav role="navigation" class="nav-menu w-nav-menu"><a id="nav-link" class="nav-link w-nav-link">Search For Mentors</a><a id="nav-link" class="nav-link w-nav-link">Log In</a></nav>
+        <nav role="navigation" class="nav-menu w-nav-menu"><a href="/" id="nav-link" class="nav-link w-nav-link">Search For Mentors</a><a href="/" id="nav-link" class="nav-link w-nav-link">Log In</a></nav>
         <div class="menu-button w-nav-button">
           <div class="menu-button-icon w-icon-nav-menu"></div>
         </div>
       </div>
     </div>
+
+
     <div class="headline-container w-container">
       <h1 id="headline" class="heading">Connecting students and <br>mentors around the world.</h1>
          <h5 id="subline" class="subhead">Currently we are in beta-testing mode with limited mentors and students. Please sign up below to stay updated
@@ -56,7 +58,7 @@
 
                     <div class="form-type" id="extra">
                         <label for="type">User Type</label>
-                        <select id = "type" class="form-select-type">
+                        <select id = "type" name = "type" class="form-select-type">
                           <option value="1" class ="option-class">Mentor</option>
                           <option value="2" class ="option-class">Student</option>
                         </select>
@@ -70,8 +72,9 @@
         </div>
 
 
-         </div><img src="images/retrolanding.png" width="4875", srcset="images/retrolanding-p-500.png 500w,
-         images/retrolanding-p-800.png 800w, images/retrolanding.png 9750w" sizes="55vw" class="image-5"></div>
+         </div><img src="{{url_for('static',filename='images/retrolanding.png')}}" width="4875", srcset="{{url_for('static',filename='images/retrolanding-p-500.png')}} 500w,
+         {{url_for('static',filename='images/retrolanding-p-800.png')}} 800w, {{url_for('static',filename='images/retrolanding.png')}} 9750w" sizes="55vw" alt="" class="image-5"></div>
+
 
 
 <!--    <img src="retrolanding.png" width="4875", srcset="retrolanding.png 500w,-->

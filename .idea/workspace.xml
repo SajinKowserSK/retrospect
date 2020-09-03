@@ -20,32 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de407cae-4db7-4737-abc8-68b8bcd4406c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/images/0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06-p-1600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06-p-2000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06-p-2600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/NP_M64_06.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart-p-1600.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart-p-2000.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart-p-800.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/Notsurewheretostart.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrolanding-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrolanding-p-800.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrolanding.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrospectunlockyourself-p-1080.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrospectunlockyourself-p-500.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrospectunlockyourself-p-800.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/retrospectunlockyourself.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/images/webclip.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/launch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/retrolanding.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/post-waitlist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/jordan-marshalls-initial-project.webflow.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/jordan-marshalls-initial-project.webflow.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/launch.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/launch.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +226,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>192</line>
+          <line>200</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -259,7 +240,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/db.py</url>
-          <line>217</line>
+          <line>218</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

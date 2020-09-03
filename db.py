@@ -21,6 +21,7 @@ students_collection = main_db.get_collection("students")
 rooms_collection = main_db.get_collection("rooms")
 room_members_collection = main_db.get_collection("room_members")
 messages_collection = main_db.get_collection("messages")
+waitlist_collection = main_db.get_collection("waitlist")
 
 
 def resetRooms():
@@ -276,3 +277,5 @@ def is_unread(room_id, user_url):
     return False
 
 
+def add_to_signup(email, type):
+    waitlist_collection.insert_one({"email":email, "type":type})
