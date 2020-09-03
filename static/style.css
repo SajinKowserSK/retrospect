@@ -215,14 +215,27 @@ body {
   -o-border-radius: 10px;
   -ms-border-radius: 10px; }
 
-.container2 {
+.container-success {
   width: 960px;
   background: #12924f;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   -o-border-radius: 10px;
-  -ms-border-radius: 10px; }
+  -ms-border-radius: 10px;
+   align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  justify-content: space-between;
+  -moz-justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -o-justify-content: space-between;
+  -ms-justify-content: space-between;
+  }
+
+
 .booking-form {
   padding: 35px 70px 51px 70px; }
 
@@ -378,4 +391,3 @@ label {
   .booking-form {
     padding: 35px 30px 51px 30px; } }
 
-/*# sourceMappingURL=style.css.map */
